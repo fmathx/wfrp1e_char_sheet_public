@@ -1,0 +1,2561 @@
+<!-- WARHAMMER FANTASY ROLEPLAY 4th EDITION CHARACTER SHEET -->
+<!-- Authors: Arioch1973, Alondaar, Havoc, Oxycutor, Realitor, Medieve, Zedafty -->
+<!-- Version 1.8 -->
+
+<!-- CHARACTER SHEET -->
+<div>
+
+	<!-- HIDDENS -->
+	<input type="hidden" name="attr_modifier" value="">
+	<input type="hidden" name="attr_whisper" value="">
+	<input type="hidden" name="attr_template" value="@{whisper} &{template:wfrp4} {{name=@{character_name}}}">
+
+	<!-- TOGGLES -->
+	<input type="checkbox" name="attr_ShowAllTabs" id="sheet-showalltabs" class="sheet-toggle sheet-toggle-1 sheet-tabAll" value="1" /><span></span><label for="sheet-showalltabs" class="sheet-has-title" data-i18n="show-all-tabs" data-i18n-title="show-all-tabs-desc">Show All Tabs</label>
+	<input type="checkbox" name="attr_AskModifier" id="sheet-askmodifier" class="sheet-toggle sheet-toggle-2" value="1" /><span></span><label for="sheet-askmodifier" class="sheet-has-title" data-i18n="ask-modifier" data-i18n-title="ask-modifier-desc">Ask Modifier</label>
+	<input type="checkbox" name="attr_WhisperToGM" id="sheet-whispertogm" class="sheet-toggle sheet-toggle-3" value="1" /><span></span><label for="sheet-whispertogm" class="sheet-has-title" data-i18n="whisper-to-gm" data-i18n-title="whisper-to-gm-desc">Whisper to GM</label>
+
+	<!--- LOGO ---->
+	<div class="sheet-col sheet-logo"><img src="https://raw.githubusercontent.com/zedafty/wfrp4/master/images/logo.png" /></div>
+
+	<!--- TABS ---->
+	<input type="radio" name="attr_npc-show" class="sheet-tab sheet-tabMain" value="1" checked /><label data-i18n="main" class="sheet-tab">Main</label>
+	<input type="radio" name="attr_npc-show" class="sheet-tab sheet-tabSkillsTalents" value="2" /><label data-i18n="skills-talent" class="sheet-tab">Skills & Talents</label>
+	<input type="radio" name="attr_npc-show" class="sheet-tab sheet-tabGearMagic" value="3" /><label data-i18n="gear-magic" class="sheet-tab">Gear & Magic</label>
+	<input type="radio" name="attr_npc-show" class="sheet-tab sheet-tabInformation" value="4" /><label data-i18n="information" class="sheet-tab">Information</label>
+	<input type="radio" name="attr_npc-show" class="sheet-tab sheet-tabExperience" value="5" /><label data-i18n="experience" class="sheet-tab">Experience</label>
+
+	<!-- MAIN -->
+	<div class="sheet-tab-content sheet-tabMain">
+		<div class="sheet-wrapper">
+			<div class="sheet-col">
+				<table>
+					<tr>
+						<td><label class="sheet-right" data-i18n="Character-name">Name</label></td>
+						<td colspan="3"><input type="text" name="attr_character_name" /></td>
+						<td><label class="sheet-right" data-i18n="Species">Species</label></td>
+						<td><input type="text" name="attr_character_Species" /></td>
+						<td><label class="sheet-right" data-i18n="Class">Class</label></td>
+						<td><input type="text" name="attr_character_Class" /></td>
+					</tr>
+					<tr>
+						<td><label class="sheet-right" data-i18n="Career">Career</label></td>
+						<td colspan="3"><input type="text" name="attr_character_Career" /></td>
+						<td><label class="sheet-right" data-i18n="Career-tier">Career Tier</label></td>
+						<td colspan="3"><input type="text" name="attr_character_CareerTier" /></td>
+					</tr>
+					<tr>
+						<td><label class="sheet-right" data-i18n="Career-Path">Career Path</label></td>
+						<td colspan="5"><input type="text" name="attr_character_CareerPath" /></td>
+						<td><label class="sheet-right" data-i18n="Status">Status</label></td>
+						<td><input type="text" name="attr_character_Status" /></td>
+					</tr>
+					<tr>
+						<td style="width: 15%;"><label class="sheet-right" data-i18n="Age">Age</label></td>
+						<td style="width: 10%;"><input type="text" name="attr_character_Age" /></td>
+						<td style="width: 17%;"><label class="sheet-right" data-i18n="Height">Height</label></td>
+						<td style="width: 10%;"><input type="text" name="attr_character_Height" /></td>
+						<td style="width: 12.5%;"><label class="sheet-right" data-i18n="Hair">Hair</label></td>
+						<td style="width: 11.5%;"><input type="text" name="attr_character_Hair" /></td>
+						<td style="width: 11.5%;"><label class="sheet-right" data-i18n="Eyes">Eyes</label></td>
+						<td style="width: 12.5%;"><input type="text" name="attr_character_Eyes" /></td>
+					</tr>
+					<tr>
+						<td><label class="sheet-right" data-i18n="Nationality">Nationality</label></td>
+						<td><input type="text" name="attr_character_Nationality" /></td>
+						<td><label class="sheet-right" data-i18n="Birthplace">Birthplace</label></td>
+						<td><input type="text" name="attr_character_Birthplace" /></td>
+						<td><label class="sheet-right" data-i18n="Religion">Religion</label></td>
+						<td><input type="text" name="attr_character_Religion" /></td>
+						<td><label class="sheet-right" data-i18n="Star-sign">Star Sign</label></td>
+						<td><input type="text" name="attr_character_StarSign" /></td>
+					</tr>
+				</table>
+			</div>
+
+			<!-- Characteristics -->
+			<div class="sheet-table-single sheet-col" style="width: 90%; margin-left: 5%">
+				<div class="sheet-table-wrapper">
+					<table>
+						<tr>
+							<th colspan="15" class="sheet-table-header"><h4 data-i18n="CHARACTERISTICS">CHARACTERISTICS</h4></th>
+						</tr>
+						<tr>
+							<th style="width: 10%;"></th>
+							<th style="width: 6%;"><label class="sheet-table-header" data-i18n="M">M</label></th>
+							<th style="width: 6%;"><button type="roll" name="roll_WS" value="@{template} {{title=^{Weapon-Skill}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_WS}]]}} {{modifier=[[@{modifier}]]}} {{hitlocation=1}} ]]" class="sheet-has-title" data-i18n-title="Weapon-Skill"><span data-i18n="WS">WS</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_BS" value="@{template} {{title=^{Ballistic-Skill}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_BS}]]}} {{modifier=[[@{modifier}]]}} {{hitlocation=1}} ]]" class="sheet-has-title" data-i18n-title="Ballistic-Skill"><span data-i18n="BS">BS</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_S" value="@{template} {{title=^{Strength}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[(@{modifier}+@{Current_S}) * 10]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Strength"><span data-i18n="S">S</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_T" value="@{template} {{title=^{Toughness}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[(@{modifier}+@{Current_T}) * 10]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Toughness"><span data-i18n="T">T</span></button></th>
+							<th style="width: 6%;"><label class="sheet-table-header" data-i18n="HP">HP</label></th>
+							<th style="width: 6%;"><button type="roll" name="roll_I" value="@{template} {{title=^{Initiative}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_I}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Initiative"><span data-i18n="I">I</span></button></th>
+							<th style="width: 6%;"><label class="sheet-table-header" data-i18n="A">A</label></th>
+							<th style="width: 6%;"><button type="roll" name="roll_Dex" value="@{template} {{title=^{Dexterity}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_Dex}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Dexterity"><span data-i18n="Dex">Dex</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_Ld" value="@{template} {{title=^{Leadership}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_Ld}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Leadership"><span data-i18n="Ld">Ld</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_Int" value="@{template} {{title=^{Intelligence}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_Int}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Intelligence"><span data-i18n="Int">Int</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_Cl" value="@{template} {{title=^{Calm}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_Cl}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Calm"><span data-i18n="Cl">Cl</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_WP" value="@{template} {{title=^{Willpower}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_WP}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Willpower"><span data-i18n="WP">WP</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_Fel" value="@{template} {{title=^{Fellowship}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_FEL}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Fellowship"><span data-i18n="Fel">Fel</span></button></th>
+						</tr>
+						<tr>
+							<td><label data-i18n="Career">Career</label></td>
+							<td><input type="checkbox" name="attr_M_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_WS_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_BS_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_S_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_T_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_HP_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_I_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_A_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_Dex_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_Ld_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_Int_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_Cl_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_WP_CareerAdvance" value="1" /><span></span></td>
+							<td><input type="checkbox" name="attr_Fel_CareerAdvance" value="1" /><span></span></td>
+						</tr>
+						<tr>
+							<td><label data-i18n="Initial">Initial</label></td>
+							<td><input type="number" name="attr_Initial_M" value="0" /></td>
+							<td><input type="number" name="attr_Initial_WS" value="0" /></td>
+							<td><input type="number" name="attr_Initial_BS" value="0" /></td>
+							<td><input type="number" name="attr_Initial_S" value="0" /></td>
+							<td><input type="number" name="attr_Initial_T" value="0" /></td>
+							<td><input type="number" name="attr_Initial_HP_Max" value="0" /></td>
+							<td><input type="number" name="attr_Initial_I" value="0" /></td>
+							<td><input type="number" name="attr_Initial_A" value="0" /></td>
+							<td><input type="number" name="attr_Initial_Dex" value="0" /></td>
+							<td><input type="number" name="attr_Initial_Ld" value="0" /></td>
+							<td><input type="number" name="attr_Initial_Int" value="0" /></td>
+							<td><input type="number" name="attr_Initial_Cl" value="0" /></td>
+							<td><input type="number" name="attr_Initial_WP" value="0" /></td>
+							<td><input type="number" name="attr_Initial_Fel" value="0" /></td>
+						</tr>
+						<tr>
+							<td><label data-i18n="Talents">Talents</label></td>
+							<td><input type="number" name="attr_Talent_M" value="0" /></td>
+							<td><input type="number" name="attr_Talent_WS" value="0" /></td>
+							<td><input type="number" name="attr_Talent_BS" value="0" /></td>
+							<td><input type="number" name="attr_Talent_S" value="0" /></td>
+							<td><input type="number" name="attr_Talent_T" value="0" /></td>
+							<td><input type="number" name="attr_Talent_HP_Max" value="0" /></td>
+							<td><input type="number" name="attr_Talent_I" value="0" /></td>
+							<td><input type="number" name="attr_Talent_A" value="0" /></td>
+							<td><input type="number" name="attr_Talent_Dex" value="0" /></td>
+							<td><input type="number" name="attr_Talent_Ld" value="0" /></td>
+							<td><input type="number" name="attr_Talent_Int" value="0" /></td>
+							<td><input type="number" name="attr_Talent_Cl" value="0" /></td>
+							<td><input type="number" name="attr_Talent_WP" value="0" /></td>
+							<td><input type="number" name="attr_Talent_Fel" value="0" /></td>
+						</tr>
+						<tr>
+							<td><label data-i18n="Advances">Advances</label></td>
+							<td><input type="number" name="attr_Advances_M" value="0" /></td>
+							<td><input type="number" name="attr_Advances_WS" value="0" /></td>
+							<td><input type="number" name="attr_Advances_BS" value="0" /></td>
+							<td><input type="number" name="attr_Advances_S" value="0" /></td>
+							<td><input type="number" name="attr_Advances_T" value="0" /></td>
+							<td><input type="number" name="attr_Advances_HP_Max" value="0" /></td>
+							<td><input type="number" name="attr_Advances_I" value="0" /></td>
+							<td><input type="number" name="attr_Advances_A" value="0" /></td>
+							<td><input type="number" name="attr_Advances_Dex" value="0" /></td>
+							<td><input type="number" name="attr_Advances_Ld" value="0" /></td>
+							<td><input type="number" name="attr_Advances_Int" value="0" /></td>
+							<td><input type="number" name="attr_Advances_Cl" value="0" /></td>
+							<td><input type="number" name="attr_Advances_WP" value="0" /></td>
+							<td><input type="number" name="attr_Advances_Fel" value="0" /></td>
+						</tr>
+						<tr>
+							<td><label data-i18n="Modifier">Modifier</label></td>
+							<td><input type="number" name="attr_Modifier_M" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_WS" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_BS" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_S" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_T" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_HP_Max" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_I" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_A" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_Dex" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_Ld" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_Int" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_Cl" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_WP" value="0" /></td>
+							<td><input type="number" name="attr_Modifier_Fel" value="0" /></td>
+						</tr>
+						<tr>
+							<td><label data-i18n="Current">Current</label></td>
+							<td><input type="number" name="attr_Current_M" value="floor(@{Initial_M} + @{Talent_M} + @{Advances_M} + @{Modifier_M})" disabled /></td>
+							<td><input type="number" name="attr_Current_WS" value="floor(@{Initial_WS} + @{Talent_WS} + @{Advances_WS} + @{Modifier_WS})" disabled /></td>
+							<td><input type="number" name="attr_Current_BS" value="floor(@{Initial_BS} + @{Talent_BS} + @{Advances_BS} + @{Modifier_BS})" disabled /></td>
+							<td><input type="number" name="attr_Current_S" value="floor(@{Initial_S} + @{Talent_S} + @{Advances_S} + @{Modifier_S})" disabled /></td>
+							<td><input type="number" name="attr_Current_T" value="floor(@{Initial_T} + @{Talent_T} + @{Advances_T} + @{Modifier_T})" disabled /></td>
+							<td>
+								<input type="hidden" name="attr_Current_HP_Max" value="floor(@{Initial_HP_Max} + @{Talent_HP_Max} + @{Advances_HP_Max} + @{Modifier_HP_Max})">
+								<input type="number" name="attr_Current_HP_Max_Display" value="@{Current_HP_Max}" disabled />
+							</td>
+							<td><input type="number" name="attr_Current_I" value="floor(@{Initial_I} + @{Talent_I} + @{Advances_I} + @{Modifier_I})" disabled /></td>
+							<td><input type="number" name="attr_Current_A" value="floor(@{Initial_A} + @{Talent_A} + @{Advances_A} + @{Modifier_A})" disabled /></td>
+							<td><input type="number" name="attr_Current_Dex" value="floor(@{Initial_Dex} + @{Talent_Dex} + @{Advances_Dex} + @{Modifier_Dex})" disabled /></td>
+							<td><input type="number" name="attr_Current_Ld" value="floor(@{Initial_Ld} + @{Talent_Ld} + @{Advances_Ld} + @{Modifier_Ld})" disabled /></td>
+							<td><input type="number" name="attr_Current_Int" value="floor(@{Initial_Int} + @{Talent_Int} + @{Advances_Int} + @{Modifier_Int})" disabled /></td>
+							<td><input type="number" name="attr_Current_Cl" value="floor(@{Initial_Cl} + @{Talent_Cl} + @{Advances_Cl} + @{Modifier_Cl})" disabled /></td>
+							<td><input type="number" name="attr_Current_WP" value="floor(@{Initial_WP} + @{Talent_WP} + @{Advances_WP} + @{Modifier_WP})" disabled /></td>
+							<td><input type="number" name="attr_Current_Fel" value="floor(@{Initial_Fel} + @{Talent_Fel} + @{Advances_Fel} + @{Modifier_Fel})" disabled /></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div style="display: inline-block; width: 90%; margin-left: 5%;">
+				<div style="display: inline-block; width: 35%; margin-left: 0%;">
+					<div class="sheet-table-wrapper">
+						<table>
+							<tr>
+								<th colspan="4" class="sheet-table-header"><h4 data-i18n="HEALTH">HEALTH</h4></th>
+							</tr>
+							<tr>
+								<td><label data-i18n="Current">Current</label></td>
+								<td>
+									<input type="hidden" name="attr_hp_bar" value="0" />
+									<input type="hidden" name="attr_hp_bar_max" value="0" />
+									<input type="number" name="attr_Current_HP_Display" value="@{hp_bar}" disabled />
+								</td>
+								<td>
+									<button type="action" name="act_lose_hp" class="small">-</button>
+								</td>
+								<td>
+									<button type="action" name="act_heal_hp" class="small">+</button>
+								</td>
+							</tr>
+							<tr>
+								<td><label data-i18n="Max">Max</label></td>
+								<td><input type="number" name="attr_Max_HP_HEALTH_Display" value="@{Current_HP_Max}" disabled /></td>
+								<td colspan="2">
+									<button type="roll" name="roll_HPDisplay" value="@{template} {{talent=Health}} {{talentdescription=Health: @{hp_bar} / @{hp_bar_max}}}">
+										<span data-i18n="Show">Show</span>
+									</button>
+								</td>
+							</tr>
+							<tr>
+								<th colspan="4" class="sheet-table-header"><h4 data-i18n="FATE">FATE</h4></th>
+							</tr>
+							<tr>
+								<td><label data-i18n="Remaining">Remaining</label></td>
+								<td>
+									<input type="hidden" name="attr_hidden_remaining_fate" value="0" />
+									<input type="number" name="attr_Remaining_Fate_Display" value="@{hidden_remaining_fate}" disabled />
+								</td>
+								<td>
+									<button type="action" name="act_use_fate" class="small">-</button>
+								</td>
+								<td>
+									<button type="action" name="act_earn_fate" class="small">+</button>
+								</td>
+							</tr>
+							<tr>
+								<th colspan="4" class="sheet-table-header"><h4 data-i18n="INSANITY">INSANITY</h4></th>
+							</tr>
+							<tr>
+								<td><label data-i18n="Current">Current</label></td>
+								<td>
+									<input type="hidden" name="attr_hidden_insanity" value="0" />
+									<input type="number" name="attr_current_insanity_display" value="@{hidden_insanity}" disabled />
+								</td>
+								<td>
+									<button type="action" name="act_remove_insanity" class="small">-</button>
+								</td>
+								<td>
+									<button type="action" name="act_add_insanity" class="small">+</button>
+								</td>
+							</tr>
+						</table>
+						<div class="sheet-table-wrapper">
+							<div><h4 data-i18n="Mental Illnesses"><label>MENTAL ILLNESSES</h4></div>
+							<div class="sheet-row">
+								<div style="width: 70%"><label data-i18n="Name">Name</label></div>
+								<div style="width: 30%" class="spacer"></div>
+							</div>
+							<fieldset class="repeating_talents" name="repeating_talents">
+								<div class="sheet-row">
+									<div style="width: 70%;"><input type="text" name="attr_IllnessName" placeholder="Illness name…" data-i18n-placeholder="Illness-name-pl" /></div>
+									<div style="width: 20%;"><button type="roll" name="roll_IllnessDisplay" value="@{template} {{title=@{IllnessName}}} {{talent=@{IllnessName}}} {{talentdescription=@{IllnessDesc}}}"><span data-i18n="Show">Show</span></button></div>
+									<div style="width: 10%" class="spacer"></div>
+									<input type="checkbox" name="attr_IllnessDescHide" class="sheet-desc sheet-wide" /><span></span>
+									<div style="width: 90%" class="sheet-desc">
+										<textarea name="attr_Illnessdesc" placeholder="Description…" data-i18n-placeholder="description-pl" spellcheck="false"></textarea>
+									</div>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+				
+
+				<div class="sheet-col" style="width: 63%;">
+					<!-- Initative -->
+					<div class="sheet-table" style="width: 99%;">
+						<div class="sheet-table-wrapper">
+							<table>
+								<tr>
+									<th colspan="5" class="sheet-table-header"><h4 data-i18n="INITIATIVE TRACKER">INITIATIVE TRACKER</h4></th>
+								</tr>
+								<tr>
+									<td style="width: 10%">
+									<td style="width: 50%">
+										<select name="attr_combat_iniative_template">
+											<option value="@{template} {{title=^{Combat Initiative}}} {{initiativeTest=[[@{character_combatiniative_modifier} + @{Current_I} &{tracker}]]}} {{heroInitiative=[[@{Current_I}]]}} {{initiativeTestTalents=[[@{character_combatiniative_modifier}]]}} {{modifier=[[@{modifier}]]}}" data-i18n="I">I</option>
+										</select>
+									</td>
+									<td style="width: 10%"><input type="number" name="attr_character_combatiniative_modifier" value="0" /></td>
+									<td style="width: 20%"><button type="roll" name="roll_combatiniativetemplate" value="@{combat_iniative_template}"><span data-i18n="Roll">Roll</span></button></td>
+									<td style="width: 10%"></td>
+								</tr>
+								<tr>
+									<td colspan="5"> </td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<th colspan="12" class="sheet-table-header"><h4 data-i18n="ENCUMBRANCE">ENCUMBRANCE</h4></th>
+								</tr>
+								<tr>
+									<th style="width: 15%"><label data-i18n="Weapons">Weapons</label></th>
+									<th style="width: 15%"><label data-i18n="Armour">Armour</label></th>
+									<th style="width: 15%"><label data-i18n="Trappings">Trappings</label></th>
+									<th style="width: 15%"><label data-i18n="Total">Total</label></th>
+									<th style="width: 20%"><label data-i18n="Mod.">Mod.</label></th>
+									<th style="width: 20%"><label data-i18n="Max-Enc">Max Enc.</label></th>
+								</tr>
+								<tr>
+									<td><input type="number" name="attr_character_EncumbranceWeapons" value="0" readonly /></td>
+									<td><input type="number" name="attr_character_EncumbranceArmour" value="0" readonly /></td>
+									<td><input type="number" name="attr_character_EncumbranceTrappings" value="0" readonly /></td>
+									<td><input type="number" name="attr_character_EncumbranceTotal" value="floor(@{character_EncumbranceWeapons}+@{character_EncumbranceArmour}+@{character_EncumbranceTrappings})" disabled /></td>
+									<td><input type="number" name="attr_character_EncumbranceMod" value="0" /></td>
+									<td><input type="number" name="attr_character_EncumbranceMax" value="floor(@{character_EncumbranceMod})" disabled /></td>
+								</tr>
+							</table>
+							<table>
+								<tr>
+									<th colspan="7" class="sheet-table-header"><h4 data-i18n="WEALTH">WEALTH</h4></th>
+								</tr>
+								<tr>
+									<td><img src="https://raw.githubusercontent.com/zedafty/wfrp4/master/images/coin-gold-crown.png" style="width: 24px; height: 24px;"></td>
+									<td colspan="2"></td>
+									<td><img src="https://raw.githubusercontent.com/zedafty/wfrp4/master/images/coin-silver-shilling.png" style="width: 24px; height: 24px;"></td>
+									<td colspan="2"></td>
+									<td><img src="https://raw.githubusercontent.com/zedafty/wfrp4/master/images/coin-brass-pennie.png" style="width: 24px; height: 24px;"></td>
+								</tr>
+								<tr>
+									<td style="width: 30%;"><input type="number" name="attr_character_Gold" value="0" /></td>
+									<td style="width: 2.5%;"><button type="action" name="act_silver_to_gold" class="small">[</button></td>
+									<td style="width: 2.5;"><button type="action" name="act_gold_to_silver" class="small">]</button></td>
+									<td style="width: 30%;"><input type="number" name="attr_character_Silver" value="0" /></td>
+									<td style="width: 2.5%;"><button type="action" name="act_brass_to_silver" class="small">[</button></td>
+									<td style="width: 2.5%;"><button type="action" name="act_silver_to_brass" class="small">]</button></td>
+									<td style="width: 30%;"><input type="number" name="attr_character_Brass" value="0" /></td>
+								</tr>
+								<tr>
+									<td><label class="sheet-center" data-i18n="Gold Crowns">Gold Crowns</label></td>
+									<td colspan="2"></td>
+									<td><label class="sheet-center" data-i18n="Silver Shillings">Silver Shillings</label></td>
+									<td colspan="2"></td>
+									<td><label class="sheet-center" data-i18n="Brass Pennies">Brass Pennies</label></td>
+								</tr>
+							</table>
+							<div class="sheet-row sheet-headline">
+								<div style="width: 35%;"><label class="sheet-right" data-i18n="Total">Total</label></div>
+								<div style="width: 15%;"><input type="number" name="attr_character_TotalWealth" class="sheet-right" value="floor(@{character_Brass} + floor(12*@{character_Silver}) + floor(240*@{character_Gold}))" disabled /></div>
+								<div style="width: 50%;"><label class="sheet-small" data-i18n="money-total">d (1GC=20/-=240d)</label></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- SKILLS & TALENTS -->
+	<div class="sheet-tab-content sheet-tabSkillsTalents">
+		<div class="sheet-wrapper">
+
+			<!-- Basic Skills -->
+			<div class="sheet-col" style="width: 49%; margin-right: 1%;">
+				<div class="sheet-table-wrapper">
+					<table class="sheet-table-single" data-i18n-list="basic-skills-list">
+						<tr data-i18n-list-item="table-header">
+							<th colspan="7" class="sheet-table-header"><h4 data-i18n="BASIC SKILLS">BASIC SKILLS</h4></th>
+						</tr>
+						<tr data-i18n-list-item="table-legend">
+							<th width="42%"><label class="sheet-left" data-i18n="Name">Name</label></th>
+							<th width="8%"></th>
+							<th width="10%"><label data-i18n="Char.">Char.</label></th>
+							<th width="10%"><label data-i18n="Adv.">Adv.</label></th>
+							<th width="10%"><label data-i18n="Mod.">Mod.</label></th>
+							<th width="10%"><label data-i18n="Total">Total</label></th>
+							<th width="10%"></th>
+						</tr>
+						<!-- Art Skill -->
+						<tr data-i18n-list-item="art">
+							<td class="sheet-left" data-i18n="Art"><i>Art</i></td>
+							<td><input type="checkbox" name="attr_ArtCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Art_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" selected data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Art_adv" value="0" /></td>
+							<td><input type="number" name="attr_Art_mod" value="0" /></td>
+							<td><input type="number" name="attr_Art" value="floor(@{Art_char}+@{Art_adv}+@{Art_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Art" value="@{template} {{title=^{Art}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Art}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Athletics Skill -->
+						<tr data-i18n-list-item="athletics">
+							<td class="sheet-left" data-i18n="Athletics">Athletics</td>
+							<td><input type="checkbox" name="attr_AthleticsCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Athletics_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Athletics_adv" value="0" /></td>
+							<td><input type="number" name="attr_Athletics_mod" value="0" /></td>
+							<td><input type="number" name="attr_Athletics" value="floor(@{Athletics_char}+@{Athletics_adv}+@{Athletics_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Athletics" value="@{template} {{title=^{Athletics}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Athletics}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Bribery Skill -->
+						<tr data-i18n-list-item="bribery">
+							<td class="sheet-left" data-i18n="Bribery">Bribery</td>
+							<td><input type="checkbox" name="attr_BriberyCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Bribery_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" selected data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Bribery_adv" value="0" /></td>
+							<td><input type="number" name="attr_Bribery_mod" value="0" /></td>
+							<td><input type="number" name="attr_Bribery" value="floor(@{Bribery_char}+@{Bribery_adv}+@{Bribery_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Bribery" value="@{template} {{title=^{Bribery}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Bribery}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Charm Skill -->
+						<tr data-i18n-list-item="charm">
+							<td class="sheet-left" data-i18n="Charm">Charm</td>
+							<td><input type="checkbox" name="attr_CharmCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Charm_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" selected data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Charm_adv" value="0" /></td>
+							<td><input type="number" name="attr_Charm_mod" value="0" /></td>
+							<td><input type="number" name="attr_Charm" value="floor(@{Charm_char}+@{Charm_adv}+@{Charm_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Charm" value="@{template} {{title=^{Charm}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Charm}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Charm Animal Skill -->
+						<tr data-i18n-list-item="charm-animal">
+							<td class="sheet-left" data-i18n="Charm-Animal">Charm Animal</td>
+							<td><input type="checkbox" name="attr_CharmAnimalCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_CharmAnimal_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" selected data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_CharmAnimal_adv" value="0" /></td>
+							<td><input type="number" name="attr_CharmAnimal_mod" value="0" /></td>
+							<td><input type="number" name="attr_CharmAnimal" value="floor(@{CharmAnimal_char}+@{CharmAnimal_adv}+@{CharmAnimal_mod})" disabled /></td>
+							<td><button type="roll" name="roll_CharmAnimal" value="@{template} {{title=^{Charm-Animal}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{CharmAnimal}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Climb Skill -->
+						<tr data-i18n-list-item="climb">
+							<td class="sheet-left" data-i18n="Climb">Climb</td>
+							<td><input type="checkbox" name="attr_ClimbCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Climb_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" selected data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Climb_adv" value="0" /></td>
+							<td><input type="number" name="attr_Climb_mod" value="0" /></td>
+							<td><input type="number" name="attr_Climb" value="floor(@{Climb_char}+@{Climb_adv}+@{Climb_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Climb" value="@{template} {{title=^{Climb}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Climb}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Cool Skill -->
+						<tr data-i18n-list-item="cool">
+							<td class="sheet-left" data-i18n="Cool">Cool</td>
+							<td><input type="checkbox" name="attr_CoolCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Cool_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" selected data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Cool_adv" value="0" /></td>
+							<td><input type="number" name="attr_Cool_mod" value="0" /></td>
+							<td><input type="number" name="attr_Cool" value="floor(@{Cool_char}+@{Cool_adv}+@{Cool_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Cool" value="@{template} {{title=^{Cool}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Cool}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Consume Alcohol Skill -->
+						<tr data-i18n-list-item="consume-alcohol">
+							<td class="sheet-left" data-i18n="Consume Alcohol">Consume Alcohol</td>
+							<td><input type="checkbox" name="attr_ConsumeAlcoholCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_ConsumeAlcohol_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" selected data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_ConsumeAlcohol_adv" value="0" /></td>
+							<td><input type="number" name="attr_ConsumeAlcohol_mod" value="0" /></td>
+							<td><input type="number" name="attr_ConsumeAlcohol" value="floor(@{ConsumeAlcohol_char}+@{ConsumeAlcohol_adv}+@{ConsumeAlcohol_mod})" disabled /></td>
+							<td><button type="roll" name="roll_ConsumeAlcohol" value="@{template} {{title=^{Consume Alcohol}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{ConsumeAlcohol}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Dodge Skill -->
+						<tr data-i18n-list-item="dodge">
+							<td class="sheet-left" data-i18n="Dodge">Dodge</td>
+							<td><input type="checkbox" name="attr_DodgeCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Dodge_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Dodge_adv" value="0" /></td>
+							<td><input type="number" name="attr_Dodge_mod" value="0" /></td>
+							<td><input type="number" name="attr_Dodge" value="floor(@{Dodge_char}+@{Dodge_adv}+@{Dodge_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Dodge" value="@{template} {{title=^{Dodge}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Dodge}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Drive Skill -->
+						<tr data-i18n-list-item="drive">
+							<td class="sheet-left" data-i18n="Drive">Drive</td>
+							<td><input type="checkbox" name="attr_DriveCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Drive_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Drive_adv" value="0" /></td>
+							<td><input type="number" name="attr_Drive_mod" value="0" /></td>
+							<td><input type="number" name="attr_Drive" value="floor(@{Drive_char}+@{Drive_adv}+@{Drive_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Drive" value="@{template} {{title=^{Drive}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Drive}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Endurance Skill -->
+						<tr data-i18n-list-item="endurance">
+							<td class="sheet-left" data-i18n="Endurance">Endurance</td>
+							<td><input type="checkbox" name="attr_EnduranceCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Endurance_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" selected data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Endurance_adv" value="0" /></td>
+							<td><input type="number" name="attr_Endurance_mod" value="0" /></td>
+							<td><input type="number" name="attr_Endurance" value="floor(@{Endurance_char}+@{Endurance_adv}+@{Endurance_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Endurance" value="@{template} {{title=^{Endurance}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Endurance}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Entertain Skill -->
+						<tr data-i18n-list-item="entertain">
+							<td class="sheet-left" data-i18n="Entertain"><i>Entertain</i></td>
+							<td><input type="checkbox" name="attr_EntertainCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Entertain_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" selected data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Entertain_adv" value="0" /></td>
+							<td><input type="number" name="attr_Entertain_mod" value="0" /></td>
+							<td><input type="number" name="attr_Entertain" value="floor(@{Entertain_char}+@{Entertain_adv}+@{Entertain_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Entertain" value="@{template} {{title=^{Entertain}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Entertain}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Gamble Skill -->
+						<tr data-i18n-list-item="gamble">
+							<td class="sheet-left" data-i18n="Gamble">Gamble</td>
+							<td><input type="checkbox" name="attr_GambleCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Gamble_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" selected data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Gamble_adv" value="0" /></td>
+							<td><input type="number" name="attr_Gamble_mod" value="0" /></td>
+							<td><input type="number" name="attr_Gamble" value="floor(@{Gamble_char}+@{Gamble_adv}+@{Gamble_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Gamble" value="@{template} {{title=^{Gamble}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Gamble}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Gossip Skill -->
+						<tr data-i18n-list-item="gossip">
+							<td class="sheet-left" data-i18n="Gossip">Gossip</td>
+							<td><input type="checkbox" name="attr_GossipCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Gossip_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" selected data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Gossip_adv" value="0" /></td>
+							<td><input type="number" name="attr_Gossip_mod" value="0" /></td>
+							<td><input type="number" name="attr_Gossip" value="floor(@{Gossip_char}+@{Gossip_adv}+@{Gossip_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Gossip" value="@{template} {{title=^{Gossip}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Gossip}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Haggle Skill -->
+						<tr data-i18n-list-item="haggle">
+							<td class="sheet-left" data-i18n="Haggle">Haggle</td>
+							<td><input type="checkbox" name="attr_HaggleCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Haggle_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" selected data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Haggle_adv" value="0" /></td>
+							<td><input type="number" name="attr_Haggle_mod" value="0" /></td>
+							<td><input type="number" name="attr_Haggle" value="floor(@{Haggle_char}+@{Haggle_adv}+@{Haggle_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Haggle" value="@{template} {{title=^{Haggle}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Haggle}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Intimidate Skill -->
+						<tr data-i18n-list-item="intimidate">
+							<td class="sheet-left" data-i18n="Intimidate">Intimidate</td>
+							<td><input type="checkbox" name="attr_IntimidateCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Intimidate_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" selected data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Intimidate_adv" value="0" /></td>
+							<td><input type="number" name="attr_Intimidate_mod" value="0" /></td>
+							<td><input type="number" name="attr_Intimidate" value="floor(@{Intimidate_char}+@{Intimidate_adv}+@{Intimidate_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Intimidate" value="@{template} {{title=^{Intimidate}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Intimidate}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Intuition Skill -->
+						<tr data-i18n-list-item="intuition">
+							<td class="sheet-left" data-i18n="Intuition">Intuition</td>
+							<td><input type="checkbox" name="attr_IntutitionCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Intuition_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" selected data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Intuition_adv" value="0" /></td>
+							<td><input type="number" name="attr_Intuition_mod" value="0" /></td>
+							<td><input type="number" name="attr_Intuition" value="floor(@{Intuition_char}+@{Intuition_adv}+@{Intuition_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Intuition" value="@{template} {{title=^{Intuition}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Intuition}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Leadership Skill -->
+						<tr data-i18n-list-item="leadership">
+							<td class="sheet-left" data-i18n="Leadership">Leadership</td>
+							<td><input type="checkbox" name="attr_LeadershipCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Leadership_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" selected data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Leadership_adv" value="0" /></td>
+							<td><input type="number" name="attr_Leadership_mod" value="0" /></td>
+							<td><input type="number" name="attr_Leadership" value="floor(@{Leadership_char}+@{Leadership_adv}+@{Leadership_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Leadership" value="@{template} {{title=^{Leadership}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Leadership}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Navigation Skill -->
+						<tr data-i18n-list-item="navigation">
+							<td class="sheet-left" data-i18n="Navigation">Navigation</td>
+							<td><input type="checkbox" name="attr_NavigationCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Navigation_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" selected data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Navigation_adv" value="0" /></td>
+							<td><input type="number" name="attr_Navigation_mod" value="0" /></td>
+							<td><input type="number" name="attr_Navigation" value="floor(@{Navigation_char}+@{Navigation_adv}+@{Navigation_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Navigation" value="@{template} {{title=^{Navigation}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Navigation}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Outdoor Survival Skill -->
+						<tr data-i18n-list-item="outdoor-survival">
+							<td class="sheet-left" data-i18n="Outdoor-Survival">Outdoor Survival</td>
+							<td><input type="checkbox" name="attr_OutdoorSurvivalCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_OutdoorSurvival_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" selected data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_OutdoorSurvival_adv" value="0" /></td>
+							<td><input type="number" name="attr_OutdoorSurvival_mod" value="0" /></td>
+							<td><input type="number" name="attr_OutdoorSurvival" value="floor(@{OutdoorSurvival_char}+@{OutdoorSurvival_adv}+@{OutdoorSurvival_mod})" disabled /></td>
+							<td><button type="roll" name="roll_OutdoorSurvival" value="@{template} {{title=^{Outdoor-Survival}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{OutdoorSurvival}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Perception Skill -->
+						<tr data-i18n-list-item="perception">
+							<td class="sheet-left" data-i18n="Perception">Perception</td>
+							<td><input type="checkbox" name="attr_PerceptionCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Perception_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" selected data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Perception_adv" value="0" /></td>
+							<td><input type="number" name="attr_Perception_mod" value="0" /></td>
+							<td><input type="number" name="attr_Perception" value="floor(@{Perception_char}+@{Perception_adv}+@{Perception_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Perception" value="@{template} {{title=^{Perception}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Perception}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Ride Skill -->
+						<tr data-i18n-list-item="ride">
+							<td class="sheet-left" data-i18n="Ride"><i>Ride</i></td>
+							<td><input type="checkbox" name="attr_RideCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Ride_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Ride_adv" value="0" /></td>
+							<td><input type="number" name="attr_Ride_mod" value="0" /></td>
+							<td><input type="number" name="attr_Ride" value="floor(@{Ride_char}+@{Ride_adv}+@{Ride_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Ride" value="@{template} {{title=^{Ride}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Ride}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Row Skill -->
+						<tr data-i18n-list-item="row">
+							<td class="sheet-left" data-i18n="Row">Row</td>
+							<td><input type="checkbox" name="attr_RowCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Row_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" selected data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Row_adv" value="0" /></td>
+							<td><input type="number" name="attr_Row_mod" value="0" /></td>
+							<td><input type="number" name="attr_Row" value="floor(@{Row_char}+@{Row_adv}+@{Row_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Row" value="@{template} {{title=^{Row}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Row}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+						<!-- Stealth Skill -->
+						<tr data-i18n-list-item="stealth">
+							<td class="sheet-left" data-i18n="Stealth"><i>Stealth</i></td>
+							<td><input type="checkbox" name="attr_StealthCareerSkill" value="1" /><span></span></td>
+							<td>
+								<select name="attr_Stealth_char">
+									<option value="@{Current_WS}" data-i18n="WS-p">(WS)</option>
+									<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+									<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+									<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+									<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+									<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+									<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+									<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+									<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+									<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+									<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+								</select>
+							</td>
+							<td><input type="number" name="attr_Stealth_adv" value="0" /></td>
+							<td><input type="number" name="attr_Stealth_mod" value="0" /></td>
+							<td><input type="number" name="attr_Stealth" value="floor(@{Stealth_char}+@{Stealth_adv}+@{Stealth_mod})" disabled /></td>
+							<td><button type="roll" name="roll_Stealth" value="@{template} {{title=^{Stealth}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Stealth}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<!-- Grouped and Advanced Skills -->
+			<div class="sheet-col" style="width: 49%; margin-right: 1%;">
+				<div class="sheet-table-wrapper">
+					<div class="sheet-table-repeat">
+						<div class="sheet-table-header"><h4 data-i18n="GROUPED-&-ADVANCED-SKILLS"><label>GROUPED & ADVANCED SKILLS</h4></div>
+						<div class="sheet-row">
+							<div style="width: 40%;"><label data-i18n="Name">Name</label></div>
+							<div style="width: 8%;"></div>
+							<div style="width: 12%;"><label class="sheet-center" data-i18n="Char.">Char.</label></div>
+							<div style="width: 10%;"><label class="sheet-center" data-i18n="Adv.">Adv.</label></div>
+							<div style="width: 10%;"><label class="sheet-center" data-i18n="Mod.">Mod.</label></div>
+							<div style="width: 10%;"><label class="sheet-center" data-i18n="Total">Total</label></div>
+							<div style="width: 10%;" class="spacer"></div>
+						</div>
+						<fieldset class="repeating_advancedskills" name="attr_repeating_advancedskills">
+							<div class="sheet-row">
+								<div style="width: 40%"><input type="text" name="attr_CustomSkillName" placeholder="Skill name…" data-i18n-placeholder="skill-name-pl" /></div>
+								<div style="width: 8%"><input type="checkbox" name="attr_CustomCareerSkill" value="1" /><span></span></div>
+								<div style="width: 12%">
+									<select name="attr_CustomSkill_char">
+										<option value="@{Current_WS}" selected data-i18n="WS-p">(WS)</option>
+										<option value="@{Current_BS}" data-i18n="BS-p">(BS)</option>
+										<option value="@{Current_S}" data-i18n="S-p">(S)</option>
+										<option value="@{Current_T}" data-i18n="T-p">(T)</option>
+										<option value="@{Current_I}" data-i18n="I-p">(I)</option>
+										<option value="@{Current_Dex}" data-i18n="Dex-p">(Dex)</option>
+										<option value="@{Current_Int}" data-i18n="Int-p">(Int)</option>
+										<option value="@{Current_WP}" data-i18n="WP-p">(WP)</option>
+										<option value="@{Current_Fel}" data-i18n="Fel-p">(Fel)</option>
+										<option value="@{Current_Ld}" data-i18n="Ld-p">(Ld)</option>
+										<option value="@{Current_Cl}" data-i18n="Cl-p">(Cl)</option>
+									</select>
+								</div>
+								<div style="width: 10%"><input type="number" name="attr_CustomSkill_adv" class="sheet-center" value="1" /></div>
+								<div style="width: 10%"><input type="number" name="attr_CustomSkill_mod" class="sheet-center" value="0" /></div>
+								<div style="width: 10%"><input type="number" name="attr_CustomSkill" class="sheet-center" value="floor(@{CustomSkill_char}+@{CustomSkill_adv}+@{CustomSkill_mod})" disabled /></div>
+								<div style="width: 10%"><button type="roll" name="roll_CustomSkill" value="@{template} {{title=@{CustomSkillName}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{CustomSkill}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Roll">Roll</span></button></div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+
+				<!-- Talents -->
+				<div class="sheet-col" style="width: 100%;">
+					<div class="sheet-table-wrapper">
+						<div class="sheet-table-header"><h4 data-i18n="Talents"><label>TALENTS</h4></div>
+						<div class="sheet-row">
+							<div style="width: 70%"><label data-i18n="Name">Name</label></div>
+							<div style="width: 10%"><label class="sheet-center" data-i18n="Adv.">Adv.</label></div>
+							<div style="width: 20%" class="spacer"></div>
+						</div>
+						<fieldset class="repeating_talents" name="repeating_talents">
+							<div class="sheet-row">
+								<div style="width: 70%;"><input type="text" name="attr_TalentName" placeholder="Talent name…" data-i18n-placeholder="talent-name-pl" /></div>
+								<div style="width: 10%;"><input type="number" name="attr_TalentNumber" value="1" /></div>
+								<div style="width: 10%;"><button type="roll" name="roll_TalentDisplay" value="@{template} {{title=@{TalentName}}} {{talent=@{TalentName}}} {{talentdescription=@{TalentDesc}}}"><span data-i18n="Show">Show</span></button></div>
+								<div style="width: 10%" class="spacer"></div>
+								<input type="checkbox" name="attr_TalentDescHide" class="sheet-desc sheet-wide" /><span></span>
+								<div style="width: 90%" class="sheet-desc">
+									<textarea name="attr_Talentdesc" placeholder="Description…" data-i18n-placeholder="description-pl" spellcheck="false"></textarea>
+								</div>
+							</div>
+						</fieldset>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- GEAR & MAGIC -->
+	<div class="sheet-tab-content sheet-tabGearMagic">
+		<div class="sheet-wrapper">
+
+			<!-- Armour -->
+			<div class="sheet-col" style="padding: 0 15%;">
+				<h4 data-i18n="Armour">ARMOUR</h4>
+				<div class="sheet-row">
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Head">Head</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="R.Arm">R.Arm</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="L.Arm">L.Arm</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Body">Body</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="R.Leg">R.Leg</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="L.Leg">L.Leg</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Shield">Shield</label></div>
+					<div style="width: 10%;"><label class="sheet-center sheet-has-title" data-i18n="AP" data-i18n-title="Armour-Points">AP</label></div>
+					<div style="width: 10%;"><label class="sheet-center sheet-has-title" data-i18n="Enc." data-i18n-title="Encumbrance">Enc.</label></div>
+					<div style="width: 10%;"></div>
+				</div>
+				<fieldset class="repeating_armor" name="attr_repeating_armor">
+					<div class="sheet-row">
+						<div style="width: 10%;"><input type="checkbox" name="attr_ArmourHead" value="1" /><span></span></div>
+						<div style="width: 10%;"><input type="checkbox" name="attr_ArmourRArm" value="1" /><span></span></div>
+						<div style="width: 10%;"><input type="checkbox" name="attr_ArmourLArm" value="1" /><span></span></div>
+						<div style="width: 10%;"><input type="checkbox" name="attr_ArmourBody" value="1" /><span></span></div>
+						<div style="width: 10%;"><input type="checkbox" name="attr_ArmourRLeg" value="1" /><span></span></div>
+						<div style="width: 10%;"><input type="checkbox" name="attr_ArmourLLeg" value="1" /><span></span></div>
+						<div style="width: 10%;"><input type="checkbox" name="attr_ArmourShield" value="1" /><span></span></div>
+						<div style="width: 10%;"><input type="number" name="attr_ArmourPoints" value="0" /></div>
+						<div style="width: 10%;"><input type="number" value="0"name="attr_ArmourEnc" /></div>
+						<div style="width: 10%;"><button type="roll" name="roll_ArmorDisplay" value="@{template} {{title=@{ArmourName}}} {{talentdescription=@{ArmourDesc}}}"><span data-i18n="Show">Show</span></button></div>
+					</div>
+					<div class="sheet-row">
+						<div style="width: 45%;"><input type="text" name="attr_ArmourName" placeholder="Armour name…" data-i18n-placeholder="armour-name-pl" /></div>
+						<div style="width: 45%;"><input type="text" name="attr_ArmourQualities" placeholder="Armour qualities and/or flaws…" data-i18n-placeholder="armour-qualities-flaws-pl" /></div>
+						<div style="width: 10%;" class="spacer"></div>
+						<input type="checkbox" name="attr_ArmourDescHide" class="sheet-desc sheet-wide" /><span></span>
+						<div style="width: 90%" class="sheet-desc">
+							<textarea name="attr_Armourdesc" placeholder="Description…" data-i18n-placeholder="description-pl" spellcheck="false"></textarea>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+			<!-- Armour Points -->
+			<div class="sheet-col" style="padding: 0 30%;">
+				<h4 data-i18n="ARMOUR-POINTS">ARMOUR POINTS</h4>
+				<div class="sheet-armour-points">
+					<div class="sheet-head">
+						<span>01-15</span>
+						<input type="number" name="attr_ArmourAPHead" value="0" readonly />
+						<label class="sheet-center" data-i18n="Head">Head</label>
+					</div>
+					<div class="sheet-body">
+						<span>56-80</span>
+						<input type="number" name="attr_ArmourAPBody" value="0" readonly />
+						<label class="sheet-center" data-i18n="Body">Body</label>
+					</div>
+					<div class="sheet-right-arm">
+						<span>15-35</span>
+						<input type="number" name="attr_ArmourAPRightArm" value="0" readonly />
+						<label class="sheet-center" data-i18n="Right Arm">Right Arm</label>
+					</div>
+					<div class="sheet-left-arm">
+						<span>36-55</span>
+						<input type="number" name="attr_ArmourAPLeftArm" value="0" readonly />
+						<label class="sheet-center" data-i18n="Left Arm">Left Arm</label>
+					</div>
+					<div class="sheet-right-leg">
+						<span>81-90</span>
+						<input type="number" name="attr_ArmourAPRightLeg" value="0" readonly />
+						<label class="sheet-center" data-i18n="Right Leg">Right Leg</label>
+					</div>
+					<div class="sheet-left-leg">
+						<span>91-00</span>
+						<input type="number" name="attr_ArmourAPLeftLeg" value="0" readonly />
+						<label class="sheet-center" data-i18n="Left Leg">Left Leg</label>
+					</div>
+					<div class="sheet-shield">
+						<input type="number" name="attr_ArmourAPShield" value="0" readonly />
+						<label class="sheet-center" data-i18n="Shield">Shield</label>
+					</div>
+				</div>
+			</div>
+
+			<!-- Weapons -->
+			<div class="sheet-col">
+				<h4 data-i18n="WEAPONS">WEAPONS</h4>
+				<div class="sheet-row">
+					<div style="width: 25%;"><label data-i18n="Name">Name</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Group">Group</label></div>
+					<div style="width: 5%;"><label class="sheet-center sheet-has-title" data-i18n="Enc." data-i18n-title="Encumbrance">Enc.</label></div>
+					<div style="width: 12.5%;"><label class="sheet-center" data-i18n="Range/Reach">Range/Reach</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Damage">Damage</label></div>
+					<div style="width: 22.5%;"><label data-i18n="Qualities/Flaws">Qualities/Flaws</label></div>
+					<div style="width: 15%;" class="sheet-spacer"></div>
+				</div>
+				<fieldset class="repeating_weapons" name="attr_repeating_weapons">
+					<div class="sheet-row">
+						<div style="width: 20%;"><input type="text" name="attr_WeaponName" placeholder="Weapon name…" data-i18n-placeholder="weapon-name-pl" /></div>
+						<div style="width: 15%;">
+							<select name="attr_WeaponGroup">
+								<option value="@{Current_WS}" data-i18n="Weapon-Skill">Weapon Skill</option>
+								<option value="@{Current_BS}" data-i18n="Ballistic-Skill">Ballistic Skill</option>
+							</select>
+						</div>
+						<div style="width: 5%;"><input type="number" name="attr_WeaponEnc" class="sheet-center" value="0" /></div>
+						<div style="width: 12.5%;"><input type="text" name="attr_WeaponRange" class="sheet-center" placeholder="Range/Reach…" data-i18n-placeholder="weapon-range-pl" /></div>
+						<div style="width: 10%;"><input type="text" name="attr_WeaponDamage" class="sheet-center" placeholder="Damage…" data-i18n-placeholder="weapon-damage-pl" /></div>
+						<div style="width: 22.5%;"><input type="text" name="attr_WeaponQualities" placeholder="Weapon qualities and/or flaws…" data-i18n-placeholder="weapon-qualities-flaws-pl" /></div>
+						<div style="width: 5%;"><input type="checkbox" name="attr_WeaponHeld" value="1" checked /><span></span></div>
+						<div style="width: 5%;"><button type="roll" name="roll_WeaponDamage" value="@{template} {{title=@{WeaponName}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{WeaponGroup}]]}} {{modifier=[[@{modifier}]]}} {{weapon=@{WeaponName}}} {{range=@{WeaponRange}}} {{damage=@{WeaponDamage}}} {{qualities=@{WeaponQualities}}} {{description=@{Weapondesc}}} {{hitlocation=1}} ]]"><span data-i18n="Roll">Roll</span></button></div>
+						<div style="width: 5%;" class="sheet-spacer"></div>
+						<input type="checkbox" name="attr_WeaponDescHide" class="sheet-desc" /><span></span>
+						<div style="width: 95%" class="sheet-desc">
+							<textarea name="attr_Weapondesc" placeholder="Description…" data-i18n-placeholder="description-pl" spellcheck="false"></textarea>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+			<!-- Spells and Prayers -->
+			<div class="sheet-col">
+				<h4 data-i18n="SPELLS-AND-PRAYERS">SPELLS AND PRAYERS</h4>
+				<div class="sheet-row sheet-headline" style="width: 50%; margin-left: 25%; margin-right: 25%;">
+					<div style="width: 50%;"><label class="sheet-right" data-i18n="Extended-Channelling-SL">Extended Channelling SL</label></div>
+					<div style="width: 7.5%;"><input type="number" name="attr_ExtendedChannellingSl" value="0" /></div>
+					<div style="width: 35%;"><label class="sheet-right" data-i18n="Sin-Points">Sin Points</label></div>
+					<div style="width: 7.5%;"><input type="number" name="attr_SinPoints" value="0" /></div>
+				</div>
+				<div class="sheet-row">
+					<div style="width: 20%;"><label data-i18n="Name">Name</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Type">Type</label></div>
+					<div style="width: 5%;"><label class="sheet-center sheet-has-title" data-i18n="CN" data-i18n-title="Casting-Number">CN</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Range">Range</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Target">Target</label></div>
+					<div style="width: 10%;"><label class="sheet-center" data-i18n="Duration">Duration</label></div>
+					<div style="width: 25%;"><label data-i18n="Effect">Effect</label></div>
+					<div style="width: 10%;" class="sheet-spacer"></div>
+				</div>
+				<fieldset class="repeating_spells" name="attr_repeating_spells">
+					<div class="sheet-row">
+						<div style="width: 20%;"><input type="text" name="attr_Spell" placeholder="Spell or prayer name…" data-i18n-placeholder="spell-name-pl" /></div>
+						<div style="width: 10%;">
+							<select name="attr_SpellType">
+								<option value="@{LanguageMagick}" data-i18n="Arcane" selected>Arcane</option>
+								<option value="@{Pray}" data-i18n="Divine">Divine</option>
+							</select>
+						</div>
+						<div style="width: 5%;"><input type="number" name="attr_SpellCN" class="sheet-center" value="0" /></div>
+						<div style="width: 10%;">
+							<select name="attr_SpellRange">
+								<option value="^{You}" data-i18n="You" selected>You</option>
+								<option value="^{Touch}" data-i18n="Touch">Touch</option>
+								<option value="^{Special}" data-i18n="Special">Special</option>
+								<option value="1 ^{yard}" data-i18n="1-Yard">1 Yard</option>
+								<option value="6 ^{yards}" data-i18n="6-Yards">6 Yards</option>
+								<option value="[[@{Current_WP}]] ^{yards}" data-i18n="Willpower-Yards">Willpower Yards</option>
+								<option value="[[@{Current_I}]] ^{yards}" data-i18n="Initiative-Yards">Initiative Yards</option>
+								<option value="[[@{Current_Fel}]] ^{yards}" data-i18n="Fellowship-Yards">Fellowship Yards</option>
+							</select>
+						</div>
+						<div style="width: 10%;"><input type="text" name="attr_SpellTarget" class="sheet-center" placeholder="Spell target…" data-i18n-placeholder="spell-target-pl" /></div>
+						<div style="width: 10%;"><input type="text" name="attr_SpellDuration" class="sheet-center" placeholder="Spell duration…" data-i18n-placeholder="spell-duration-pl" /></div>
+						<div style="width: 25%;"><input type="text" name="attr_SpellEffect" placeholder="Spell effect…" data-i18n-placeholder="spell-effect-pl" /></div>
+						<div style="width: 5%;"><button type="roll" name="cast_spell_info" value="@{template} {{title=@{Spell}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{SpellType}]]}} {{modifier=[[@{modifier}]]}} {{spell=@{Spell}}} {{cn=@{SpellCN}}} {{range=@{SpellRange}}} {{target=@{SpellTarget}}} {{duration=@{SpellDuration}}} {{effect=@{SpellEffect}}} {{description=@{Spelldesc}}} {{hitlocation=1}} {{description=@{Spelldesc}}} {{channelling=@{ExtendedChannellingSl}}}"><span data-i18n="Roll">Roll</span></button></div>
+						<div style="width: 5%;" class="sheet-spacer"></div>
+						<input type="checkbox" name="attr_SpellDescHide" class="sheet-desc" /><span></span>
+						<div style="width: 95%" class="sheet-desc">
+							<textarea name="attr_Spelldesc" placeholder="Description…" data-i18n-placeholder="description-pl" spellcheck="false"></textarea>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+			<!-- Injuries, Afflictions, Psychology and Mutations -->
+			<div class="sheet-col">
+				<h4 data-i18n="INJURIES-AFFLICTIONS-PYSCHOLOGY-&-MUTATIONS">INJURIES, AFFLICTIONS, PSYCHOLOGY AND MUTATIONS</h4>
+				<div class="sheet-row sheet-headline" style="width: 70%; margin-left: 15%; margin-right: 15%;">
+					<div style="width: 30%"><label class="sheet-right" data-i18n="Current-Corruption">Current Corruption</label></div>
+					<div style="width: 7.5%"><input type="number" name="attr_corruption" value="0" /></div>
+					<div style="width: 27.5%"><label class="sheet-right" data-i18n="Max-Corruption">Max Corruption</label></div>
+					<div style="width: 7.5%"><input type="number" name="attr_maxcorruption" value="floor(@{Current_WP}+@{corruptionmod})" disabled /></div>
+					<div style="width: 20%"><label class="sheet-right" data-i18n="Modifier">Modifier</label></div>
+					<div style="width: 7.5%"><input type="number" name="attr_corruptionmod" value="0" /></div>
+				</div>
+				<div class="sheet-row">
+					<div style="width: 20%;"><label data-i18n="Name">Name</label></div>
+					<div style="width: 50%;"><label data-i18n="Effect">Effect</label></div>
+					<div style="width: 20%;"><label class="sheet-center" data-i18n="Time">Time</label></div>
+					<div style="width: 10%;" class="sheet-spacer"></div>
+				</div>
+				<fieldset class="repeating_afflictions" name="repeating_afflicitons">
+					<div class="sheet-row">
+						<div style="width: 20%;"><input type="text" name="attr_afflictionname" placeholder="Affliction name…" data-i18n-placeholder="affliction-name-pl" /></div>
+						<div style="width: 50%;"><input type="text" name="attr_afflictioneffect" placeholder="Affliction effect…" data-i18n-placeholder="affliction-effect-pl" /></div>
+						<div style="width: 20%;"><input type="text" name="attr_afflictionhealtime" class="sheet-center" placeholder="Affliction heal time…" data-i18n-placeholder="affliction-heal-time-pl" /></div>
+						<div style="width: 5%;"><button type="roll" name="roll_AfflicitonDisplay" value="@{template} {{title=@{afflictionname}}} {{afflictiondescription=@{Afflicitondesc}}} {{afflictionEffect=@{afflictioneffect}}} {{afflictionTime=@{afflictionhealtime}}}"><span data-i18n="Show">Show</span></button></div>
+						<div style="width: 5%;" class="spacer"></div>
+						<input type="checkbox" name="attr_AfflicitonDescHide" class="sheet-desc" /><span></span>
+						<div style="width: 95%" class="sheet-desc">
+							<textarea name="attr_Afflicitondesc" placeholder="Description…" data-i18n-placeholder="description-pl" spellcheck="false"></textarea>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+			<!-- Trappings -->
+			<div class="sheet-col">
+				<h4 data-i18n="Trappings">TRAPPINGS</h4>
+				<div class="sheet-row">
+					<div style="width: 80%;"><label data-i18n="Name">Name</label></div>
+					<div style="width: 5%;"><label class="sheet-has-title" data-i18n="Enc." data-i18n-title="Encumbrance">Enc.</label></div>
+					<div style="width: 15%;" class="spacer"></div>
+				</div>
+				<fieldset class="repeating_trappings" name="repeating_trappings">
+					<div class="sheet-row">
+						<div style="width: 80%;"><input type="text" name="attr_TrappingName" placeholder="Trapping name…" data-i18n-placeholder="trapping-name-pl" /></div>
+						<div style="width: 5%;"><input type="number" name="attr_TrappingWeight" value="0" /></div>
+						<div style="width: 5%;"><input type="checkbox" name="attr_TrappingHeld" value="1" checked /><span></span></div>
+						<div style="width: 5%;"><button type="roll" name="roll_TrappingDisplay" value="@{template} {{title=@{TrappingName}}} {{talentdescription=@{TrappingDesc}}}"><span data-i18n="Show">Show</span></button></div>
+						<div style="width: 5%;" class="spacer"></div>
+						<input type="checkbox" name="attr_TrappingDescHide" class="sheet-desc" /><span></span>
+						<div style="width: 95%" class="sheet-desc">
+							<textarea name="attr_Trappingdesc" placeholder="Description…" data-i18n-placeholder="description-pl" spellcheck="false"></textarea>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- INFORMATION -->
+	<div class="sheet-tab-content sheet-tabInformation">
+		<div class="sheet-wrapper">
+			<div>
+				<div class="sheet-col" style="width: 48%; margin-right: 2%;">
+					<h4 data-i18n="PERSONALITY">PERSONALITY</h4>
+					<textarea name="attr_Personality" style="min-height: 100px" spellcheck="false"></textarea>
+				</div>
+				<div class="sheet-col" style="width: 48%; margin-left: 2%;">
+					<h4 data-i18n="APPEARANCE">APPEARANCE</h4>
+					<textarea name="attr_Appearance" style="min-height: 100px" spellcheck="false"></textarea>
+				</div>
+			</div>
+			<div>
+				<div class="sheet-col" style="width: 48%; margin-right: 2%;">
+					<h4 data-i18n="CONTACTS/FRIENDS">CONTACTS/FRIENDS</h4>
+					<textarea name="attr_Contacts" style="min-height: 100px" spellcheck="false"></textarea>
+				</div>
+				<div class="sheet-col" style="width: 48%; margin-left: 2%;">
+					<h4 data-i18n="ENEMIES">ENEMIES</h4>
+					<textarea name="attr_Enemies" style="min-height: 100px" spellcheck="false"></textarea>
+				</div>
+			</div>
+			<div>
+				<div class="sheet-col" style="width: 100%;">
+					<h4 data-i18n="HISTORY">HISTORY</h4>
+					<textarea name="attr_History" style="min-height: 150px" spellcheck="false"></textarea>
+				</div>
+			</div>
+			<div>
+				<div class="sheet-col" style="width: 100%;">
+					<h4 data-i18n="NOTES">NOTES</h4>
+					<textarea name="attr_Notes" style="min-height: 150px" spellcheck="false"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- EXPERIENCE -->
+	<div class="sheet-tab-content sheet-tabExperience">
+		<div class="sheet-wrapper">
+			<div class="sheet-col">
+				<h4 data-i18n="Experience-Points">Experience Points</h4>
+				<table style="width: auto; margin-left: auto; margin-right: auto;">
+					<tr>
+						<th><label style="height: auto;" data-i18n="Total-XP">Total XP</label></th>
+						<th><label style="height: auto;" data-i18n="Spent-XP">Spent XP</label></th>
+						<th><label style="height: auto" data-i18n="Left-XP">Left XP</label></th>
+					</tr>
+					<tr>
+						<td style="width: 120px;"><input type="number" name="attr_character_TotalExperience" value="0" /></td>
+						<td style="width: 120px;"><input type="number" name="attr_character_SpentExperience" value="0" /></td>
+						<td style="width: 120px;"><input type="number" name="attr_character_LeftExperience" value="floor(@{character_TotalExperience}-@{character_SpentExperience})" disabled /></td>
+					</tr>
+				</table>
+			</div>
+			<div class="sheet-col">
+				<label data-i18n="Advancements-Taken-Calculated-p">Advancements Taken (Calculated):</label>
+				<fieldset class="repeating_advancements">
+					<table>
+						<tr>
+							<td style="width: 25%;"><input type="text" name="attr_advancement1" placeholder="Advancement name…" data-i18n-placeholder="advancement-name-pl" /></td>
+							<td style="width: 5%;"><input type="number" placeholder="Advancement cost…" data-i18n-placeholder="advancement-cost-pl" value="0" name="attr_advancement1xp" /></td>
+							<td style="width: 5%;"></td>
+							<td style="width: 25%;"><input type="text" name="attr_advancement2" placeholder="Advancement name…" data-i18n-placeholder="advancement-name-pl" /></td>
+							<td style="width: 5%;"><input type="number" placeholder="Advancement cost…" data-i18n-placeholder="advancement-cost-pl" value="0" name="attr_advancement2xp" /></td>
+							<td style="width: 5%;"></td>
+							<td style="width: 25%;"><input type="text" name="attr_advancement3" pplaceholder="Advancement name…" data-i18n-placeholder="advancement-name-pl"" /></td>
+							<td style="width: 5%;"><input type="number" placeholder="Advancement cost…" data-i18n-placeholder="advancement-cost-pl" value="0" name="attr_advancement3xp" /></td>
+						</tr>
+					</table>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+
+	<!-- FOOTER -->
+	<div class="sheet-footer">
+		<div class="sheet-version">
+			<i>l</i>
+			<span>v.</span>
+			<span name="attr_version"></span>
+		</div>
+	</div>
+
+</div>
+
+<!-- Rolltemplate wfrp4 -->
+<rolltemplate class="sheet-rolltemplate-wfrp4">
+	<table>
+		<th>
+			<div class="sheet-rollcharacter">{{name}}</div>
+			<div class="sheet-rolltitle">{{title}}</div>
+		</th>
+		<tr>
+			<td>
+
+				{{#dice}}
+				<div class="sheet-dice-result">
+				<!-- Roll Result -->
+				{{#rollWasCrit() dice}}{{#rollGreater() dice against}}<span class="sheet-critical-failure"></span>{{/rollGreater() dice against}}{{/rollWasCrit() dice}}
+				<span class="sheet-roll-result"><span class="sheet-label" data-i18n="Rolled">Rolled</span> {{dice}} <b data-i18n="vs">vs</b> {{against}}</span>
+
+				<!-- Modifier -->
+				{{#modifier}}
+				<span class="sheet-small">
+				{{#^rollTotal() modifier 0}}<b data-i18n="mod">mod</b>
+				{{#rollLess() modifier 0}}<span class="sheet-negative">{{/rollLess() modifier 0}}
+				{{#rollGreater() modifier 0}}<span class="sheet-positive">{{/rollGreater() modifier 0}}
+				{{#rollGreater() modifier 0}}+{{/rollGreater() modifier 0}}{{modifier}}</span>
+				{{/^rollTotal() modifier 0}}
+				</span>
+				{{/modifier}}
+				<br>
+
+				<!-- Success Result -->
+				<span class="sheet-label" data-i18n="Result">Result</span>
+				{{#rollWasCrit() dice}}
+				{{#^rollGreater() dice against}}<b><i class="sheet-positive"><span data-i18n="Critical-Success">Critical Success</span></i></b>{{/^rollGreater() dice against}}
+				{{#rollGreater() dice against}}<b><i class="sheet-negative"><span data-i18n="Fumbling-Failure">Fumbling Failure</span></i></b>{{/rollGreater() dice against}}
+				{{/rollWasCrit() dice}}
+				{{#rollWasFumble() dice}}<b><i class="sheet-negative"><span data-i18n="Fumbling-Failure">Fumbling Failure</span></i></b>{{/rollWasFumble() dice}}
+				{{#^rollWasCrit() dice}}
+				{{#^rollWasFumble() dice}}
+				{{#^rollGreater() dice against}}<b><i class="sheet-positive"><span data-i18n="Success">Success</span></i></b>{{/^rollGreater() dice against}}
+				{{#rollGreater() dice against}}<b><i class="sheet-negative"><span data-i18n="Failure">Failure</span></i></b>{{/rollGreater() dice against}}
+				{{/^rollWasFumble() dice}}
+				{{/^rollWasCrit() dice}}
+				</div>
+				{{/dice}}
+
+				<!-- Weapon Stats 1st part -->
+				{{#weapon}}
+				<span class="sheet-label" data-i18n="Range/Reach">Range/Reach</span> {{range}}<br>
+				<span class="sheet-label" data-i18n="Damage">Damage</span> {{damage}}
+				{{/weapon}}
+
+				<!-- Spell Stats 1st part -->
+				{{#spell}}
+				<span class="sheet-label" data-i18n="CN">CN</span> {{cn}}
+				{{/spell}}
+
+				<!-- Extended Channelling SL -->
+				{{#channelling}}
+				<span class="sheet-label" data-i18n="Channelled-SL">Channelled SL</span> {{channelling}}
+				{{/channelling}}
+
+				<!-- Success Level -->
+				{{#dice}}
+				<span class="sheet-label" data-i18n="SL">SL</span>
+
+				{{#rollLess() against -110}}
+				{{#rollBetween() dice 6 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 6 100}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollLess() against -110}}
+
+				{{#rollBetween() against -109 -100}}
+				{{#rollBetween() dice 10 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 10 100}}
+				{{#rollBetween() dice 6 9}}-10{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -109 -100}}
+
+				{{#rollBetween() against -99 -90}}
+				{{#rollBetween() dice 20 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 20 100}}
+				{{#rollBetween() dice 10 19}}–10{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-9{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -99 -90}}
+
+				{{#rollBetween() against -89 -80}}
+				{{#rollBetween() dice 30 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 30 100}}
+				{{#rollBetween() dice 20 29}}–10{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–9{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-8{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -89 -80}}
+
+				{{#rollBetween() against -79 -70}}
+				{{#rollBetween() dice 40 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 40 100}}
+				{{#rollBetween() dice 30 39}}–10{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–9{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–8{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-7{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -79 -70}}
+
+				{{#rollBetween() against -69 -60}}
+				{{#rollBetween() dice 50 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 50 100}}
+				{{#rollBetween() dice 40 49}}–10{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–9{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–8{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–7{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-6{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -69 -60}}
+
+				{{#rollBetween() against -59 -50}}
+				{{#rollBetween() dice 60 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 60 100}}
+				{{#rollBetween() dice 50 59}}–10{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–9{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–8{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–7{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–6{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-5{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -59 -50}}
+
+				{{#rollBetween() against -49 -40}}
+				{{#rollBetween() dice 70 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 70 100}}
+				{{#rollBetween() dice 60 69}}–10{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–9{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–8{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–7{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–6{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–5{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-4{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -49 -40}}
+
+				{{#rollBetween() against -39 -30}}
+				{{#rollBetween() dice 80 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 80 100}}
+				{{#rollBetween() dice 70 79}}–10{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–9{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–8{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–7{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–6{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–5{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–4{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-3{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -39 -30}}
+
+				{{#rollBetween() against -29 -20}}
+				{{#rollBetween() dice 90 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollBetween() dice 90 100}}
+				{{#rollBetween() dice 80 89}}–10{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–9{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–8{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–7{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–6{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–5{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–4{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–3{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-2{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -29 -20}}
+
+				{{#rollBetween() against -19 -10}}
+				{{#rollTotal() dice 100}}-10 <span class="sheet-small"><i>min calculated SL</i></span>{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–10{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–9{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–8{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–7{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–6{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–5{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–4{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–3{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–2{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}-1{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -19 -10}}
+
+				{{#rollBetween() against -9 9}}
+				{{#rollTotal() dice 100}}–10{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–9{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–8{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–7{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–6{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–5{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–4{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–3{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–2{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}–1{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 6 9}}
+				{{#rollBetween() dice against 9}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 9}}
+				{{#rollBetween() dice 6 against}}+0{{/rollBetween() dice 6 against}}
+				{{/rollBetween() dice 6 9}}
+				{{#rollBetween() dice 1 5}}+1{{/rollBetween() dice 1 5}}
+				{{/rollBetween() against -9 9}}
+
+				{{#rollBetween() against 10 19}}
+				{{#rollTotal() dice 100}}–9{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–8{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–7{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–6{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–5{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–4{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–3{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–2{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}–1{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice against 19}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 19}}
+				{{#rollBetween() dice 10 against}}+0{{/rollBetween() dice 10 against}}
+				{{#rollBetween() dice 1 9}}+1{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 10 19}}
+
+				{{#rollBetween() against 20 29}}
+				{{#rollTotal() dice 100}}–8{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–7{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–6{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–5{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–4{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–3{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–2{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}–1{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice against 29}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 29}}
+				{{#rollBetween() dice 20 against}}+0{{/rollBetween() dice 20 against}}
+				{{#rollBetween() dice 10 19}}+1{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+2{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 20 29}}
+
+				{{#rollBetween() against 30 39}}
+				{{#rollTotal() dice 100}}-7{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–6{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–5{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–4{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–3{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–2{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}–1{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice against 39}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 39}}
+				{{#rollBetween() dice 30 against}}+0{{/rollBetween() dice 30 against}}
+				{{#rollBetween() dice 20 29}}+1{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+2{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+3{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 30 39}}
+
+				{{#rollBetween() against 40 49}}
+				{{#rollTotal() dice 100}}–6{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–5{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–4{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–3{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–2{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}–1{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice against 49}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 49}}
+				{{#rollBetween() dice 40 against}}+0{{/rollBetween() dice 40 against}}
+				{{#rollBetween() dice 30 39}}+1{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+2{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+3{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+4{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 40 49}}
+
+				{{#rollBetween() against 50 59}}
+				{{#rollTotal() dice 100}}–5{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–4{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–3{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–2{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}–1{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice against 59}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 59}}
+				{{#rollBetween() dice 50 against}}+0{{/rollBetween() dice 50 against}}
+				{{#rollBetween() dice 40 49}}+1{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+2{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+3{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+4{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+5{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 50 59}}
+
+				{{#rollBetween() against 60 69}}
+				{{#rollTotal() dice 100}}–4{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–3{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–2{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}–1{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice against 69}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 69}}
+				{{#rollBetween() dice 60 against}}+0{{/rollBetween() dice 60 against}}
+				{{#rollBetween() dice 50 59}}+1{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+2{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+3{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+4{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+5{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+6{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 60 69}}
+
+				{{#rollBetween() against 70 79}}
+				{{#rollTotal() dice 100}}–3{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–2{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice 80 89}}–1{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice against 79}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 79}}
+				{{#rollBetween() dice 70 against}}+0{{/rollBetween() dice 70 against}}
+				{{#rollBetween() dice 60 69}}+1{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+2{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+3{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+4{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+5{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+6{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+7{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 70 79}}
+
+				{{#rollBetween() against 80 89}}
+				{{#rollTotal() dice 100}}–2{{/rollTotal() dice 100}}
+				{{#rollBetween() dice 90 99}}–1{{/rollBetween() dice 90 99}}
+				{{#rollBetween() dice against 89}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 89}}
+				{{#rollBetween() dice 80 against}}+0{{/rollBetween() dice 80 against}}
+				{{#rollBetween() dice 70 79}}+1{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+2{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+3{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+4{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+5{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+6{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+7{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+8{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 80 89}}
+
+				{{#rollBetween() against 90 99}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice against 95}}{{#^rollTotal() dice against}}–0{{/^rollTotal() dice against}}{{/rollBetween() dice against 95}}
+				{{#rollBetween() dice 90 against}}+0{{/rollBetween() dice 90 against}}
+				{{#rollBetween() dice 80 89}}+1{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+2{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+3{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+4{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+5{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+6{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+7{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+8{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+9{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 90 99}}
+
+				{{#rollBetween() against 100 109}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+1{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+2{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+3{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+4{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+5{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+6{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+7{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+8{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+9{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+10{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 100 109}}
+
+				{{#rollBetween() against 110 119}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+2{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+3{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+4{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+5{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+6{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+7{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+8{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+9{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 10 19}}+10{{/rollBetween() dice 10 19}}
+				{{#rollBetween() dice 1 9}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 9}}
+				{{/rollBetween() against 110 119}}
+
+				{{#rollBetween() against 120 129}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+3{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+4{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+5{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+6{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+7{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+8{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+9{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 20 29}}+10{{/rollBetween() dice 20 29}}
+				{{#rollBetween() dice 1 19}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 19}}
+				{{/rollBetween() against 120 129}}
+
+				{{#rollBetween() against 130 139}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+4{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+5{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+6{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+7{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+8{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+9{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 30 39}}+10{{/rollBetween() dice 30 39}}
+				{{#rollBetween() dice 1 29}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 29}}
+				{{/rollBetween() against 130 139}}
+
+				{{#rollBetween() against 140 149}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+5{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+6{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+7{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+8{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+9{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 40 49}}+10{{/rollBetween() dice 40 49}}
+				{{#rollBetween() dice 1 39}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 39}}
+				{{/rollBetween() against 140 149}}
+
+				{{#rollBetween() against 150 159}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+6{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+7{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+8{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+9{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 50 59}}+10{{/rollBetween() dice 50 59}}
+				{{#rollBetween() dice 1 49}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 49}}
+				{{/rollBetween() against 150 159}}
+
+				{{#rollBetween() against 160 169}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+7{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+8{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+9{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 60 69}}+10{{/rollBetween() dice 60 69}}
+				{{#rollBetween() dice 1 59}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 59}}
+				{{/rollBetween() against 160 169}}
+
+				{{#rollBetween() against 170 179}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+8{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+9{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 70 79}}+10{{/rollBetween() dice 70 79}}
+				{{#rollBetween() dice 1 69}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 69}}
+				{{/rollBetween() against 170 179}}
+
+				{{#rollBetween() against 180 189}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+9{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 80 89}}+10{{/rollBetween() dice 80 89}}
+				{{#rollBetween() dice 1 79}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 79}}
+				{{/rollBetween() against 180 189}}
+
+				{{#rollBetween() against 190 199}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 90 95}}+10{{/rollBetween() dice 90 95}}
+				{{#rollBetween() dice 1 89}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 89}}
+				{{/rollBetween() against 190 199}}
+
+				{{#rollGreater() against 199}}
+				{{#rollBetween() dice 96 100}}-1{{/rollBetween() dice 96 100}}
+				{{#rollBetween() dice 1 95}}+10 <span class="sheet-small"><i>max calculated SL</i></span>{{/rollBetween() dice 1 95}}
+				{{/rollGreater() against 199}}
+
+				{{/dice}}
+
+				<!-- Hit Location -->
+				{{#hitlocation}}
+				<br><span class="sheet-label" data-i18n="Hit Location">Hit Location</span>
+				<!-- Head -->
+				{{#rollTotal() dice 10}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 10}}
+				{{#rollTotal() dice 20}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 20}}
+				{{#rollTotal() dice 30}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 30}}
+				{{#rollTotal() dice 40}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 40}}
+				{{#rollTotal() dice 50}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 50}}
+				{{#rollTotal() dice 60}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 60}}
+				{{#rollTotal() dice 70}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 70}}
+				{{#rollTotal() dice 80}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 80}}
+				{{#rollTotal() dice 90}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 90}}
+				{{#rollTotal() dice 01}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 01}}
+				{{#rollTotal() dice 11}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 11}}
+				{{#rollTotal() dice 21}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 21}}
+				{{#rollTotal() dice 31}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 31}}
+				{{#rollTotal() dice 41}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 41}}
+				{{#rollTotal() dice 51}}<span data-i18n="Head">Head</span>{{/rollTotal() dice 51}}
+				<!-- Left Arm -->
+				{{#rollTotal() dice 63}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 63}}
+				{{#rollTotal() dice 73}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 73}}
+				{{#rollTotal() dice 83}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 83}}
+				{{#rollTotal() dice 93}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 93}}
+				{{#rollTotal() dice 04}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 04}}
+				{{#rollTotal() dice 14}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 14}}
+				{{#rollTotal() dice 24}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 24}}
+				{{#rollTotal() dice 34}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 34}}
+				{{#rollTotal() dice 44}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 44}}
+				{{#rollTotal() dice 54}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 54}}
+				{{#rollTotal() dice 64}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 64}}
+				{{#rollTotal() dice 74}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 74}}
+				{{#rollTotal() dice 84}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 84}}
+				{{#rollTotal() dice 94}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 94}}
+				{{#rollTotal() dice 05}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 05}}
+				{{#rollTotal() dice 15}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 15}}
+				{{#rollTotal() dice 25}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 25}}
+				{{#rollTotal() dice 35}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 35}}
+				{{#rollTotal() dice 45}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 45}}
+				{{#rollTotal() dice 55}}<span data-i18n="Left Arm">Left Arm</span>{{/rollTotal() dice 55}}
+				
+				<!-- Right Arm -->
+				{{#rollTotal() dice 61}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 61}}
+				{{#rollTotal() dice 71}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 71}}
+				{{#rollTotal() dice 81}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 81}}
+				{{#rollTotal() dice 91}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 91}}
+				{{#rollTotal() dice 02}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 02}}
+				{{#rollTotal() dice 12}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 12}}
+				{{#rollTotal() dice 22}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 22}}
+				{{#rollTotal() dice 32}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 32}}
+				{{#rollTotal() dice 42}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 42}}
+				{{#rollTotal() dice 52}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 52}}
+				{{#rollTotal() dice 62}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 62}}
+				{{#rollTotal() dice 72}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 72}}
+				{{#rollTotal() dice 82}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 82}}
+				{{#rollTotal() dice 92}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 92}}
+				{{#rollTotal() dice 03}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 03}}
+				{{#rollTotal() dice 13}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 13}}
+				{{#rollTotal() dice 23}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 23}}
+				{{#rollTotal() dice 33}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 33}}
+				{{#rollTotal() dice 43}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 43}}
+				{{#rollTotal() dice 53}}<span data-i18n="Right Arm">Right Arm</span>{{/rollTotal() dice 53}}
+				
+				<!-- Body -->
+				{{#rollTotal() dice 65}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 65}}
+				{{#rollTotal() dice 75}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 75}}
+				{{#rollTotal() dice 85}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 85}}
+				{{#rollTotal() dice 95}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 95}}
+				{{#rollTotal() dice 06}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 06}}
+				{{#rollTotal() dice 16}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 16}}
+				{{#rollTotal() dice 26}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 26}}
+				{{#rollTotal() dice 36}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 36}}
+				{{#rollTotal() dice 46}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 46}}
+				{{#rollTotal() dice 56}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 56}}
+				{{#rollTotal() dice 66}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 66}}
+				{{#rollTotal() dice 76}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 76}}
+				{{#rollTotal() dice 86}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 86}}
+				{{#rollTotal() dice 96}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 96}}
+				{{#rollTotal() dice 07}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 07}}
+				{{#rollTotal() dice 17}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 17}}
+				{{#rollTotal() dice 27}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 27}}
+				{{#rollTotal() dice 37}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 37}}
+				{{#rollTotal() dice 47}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 47}}
+				{{#rollTotal() dice 57}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 57}}
+				{{#rollTotal() dice 67}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 67}}
+				{{#rollTotal() dice 77}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 77}}
+				{{#rollTotal() dice 87}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 87}}
+				{{#rollTotal() dice 97}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 97}}
+				{{#rollTotal() dice 08}}<span data-i18n="Body">Body</span>{{/rollTotal() dice 08}}
+				<!-- Left Leg -->
+				{{#rollTotal() dice 19}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 19}}
+				{{#rollTotal() dice 29}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 29}}
+				{{#rollTotal() dice 39}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 39}}
+				{{#rollTotal() dice 49}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 49}}
+				{{#rollTotal() dice 59}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 59}}
+				{{#rollTotal() dice 69}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 69}}
+				{{#rollTotal() dice 79}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 79}}
+				{{#rollTotal() dice 89}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 89}}
+				{{#rollTotal() dice 99}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 99}}
+				{{#rollTotal() dice 100}}<span data-i18n="Left Leg">Left Leg</span>{{/rollTotal() dice 100}}
+				
+				<!-- Right Leg -->
+				{{#rollTotal() dice 18}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 18}}
+				{{#rollTotal() dice 28}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 28}}
+				{{#rollTotal() dice 38}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 38}}
+				{{#rollTotal() dice 48}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 48}}
+				{{#rollTotal() dice 58}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 58}}
+				{{#rollTotal() dice 68}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 68}}
+				{{#rollTotal() dice 78}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 78}}
+				{{#rollTotal() dice 88}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 88}}
+				{{#rollTotal() dice 98}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 98}}
+				{{#rollTotal() dice 09}}<span data-i18n="Right Leg">Right Leg</span>{{/rollTotal() dice 09}}
+				{{/hitlocation}}
+
+				<!-- Weapon Stats 2nd part -->
+				{{#weapon}}
+				<br><span class="sheet-label" data-i18n="Qualities/Flaws">Qualities/Flaws</span> {{qualities}}
+				{{/weapon}}
+
+				<!-- Spell Stats 2nd part -->
+				{{#spell}}
+				<br><span class="sheet-label" data-i18n="Range">Range</span> {{range}}
+				<br><span class="sheet-label" data-i18n="Target">Target</span> {{target}}
+				<br><span class="sheet-label" data-i18n="Duration">Duration</span> {{duration}}
+				<br><span class="sheet-label" data-i18n="Effect">Effect</span> {{effect}}
+				{{/spell}}
+
+				<!-- Description -->
+				{{#description}}
+				<div class="sheet-description">{{description}}</div>
+				{{/description}}
+
+				<!-- Talent Description -->
+				{{#talentdescription}}
+				<div class="sheet-description">{{talentdescription}}</div>
+				{{/talentdescription}}
+
+				<!-- Affliction Description -->
+				{{#afflictionEffect}}
+				<span class="sheet-label" data-i18n="Effect">Effect</span> {{afflictionEffect}}<br>
+				<span class="sheet-label" data-i18n="Time">Time</span> {{afflictionTime}}<br>
+				<div class="sheet-description">{{afflictiondescription}}</div>
+				{{/afflictionEffect}}
+
+				<!-- Initiative Description -->
+				{{#initiativeTest}}
+				<span class="sheet-label" data-i18n="Hero-Initiative">Hero Initiative</span> {{heroInitiative}}<br>
+				<span class="sheet-label" data-i18n="Initiative-Talents">Talents</span> {{initiativeTestTalents}}<br>
+				<span class="sheet-label" data-i18n="Test">Test</span> {{initiativeTest}}
+				{{/initiativeTest}}
+
+			</td>
+		</tr>
+	</table>
+</rolltemplate>
+
+<!-- Script Worker by Alondaar -->
+<script type="text/worker">
+
+	/* ======================================================================== */
+	/* ------------------------------------------------------------------------ */
+	/* --------------------------- TheAaronSheet.js --------------------------- */
+	/* ------------------------------------------------------------------------ */
+	/* ======================================================================== */
+
+	// Github: https://github.com/shdwjk/TheAaronSheet/blob/master/TheAaronSheet.js
+	// By: The Aaron, Arcane Scriptomancer
+	// Contact: https://app.roll20.net/users/104025/the-aaron
+
+	var TAS = TAS || (function() {
+		"use strict";
+		var version = "0.2.5",
+			lastUpdate = 1504710542,
+			queuedUpdates = {}, // Used for delaying saves till the last moment.
+			prepareUpdate = function( attribute, value ) {
+				queuedUpdates[attribute]=value;
+			},
+			applyQueuedUpdates = function() {
+				setAttrs(queuedUpdates);
+				queuedUpdates = {};
+			},
+			namesFromArgs = function(args,base) {
+				return _.chain(args)
+					.reduce(function(memo,attr) {
+						if ("string" === typeof attr) {
+							memo.push(attr);
+						} else if (_.isArray(args) || _.isArguments(args)) {
+							memo = namesFromArgs(attr,memo);
+						}
+						return memo;
+					},(_.isArray(base) && base) || [])
+					.uniq()
+					.value();
+			},
+			addId = function(obj,value) {
+				Object.defineProperty(obj,"id",{
+					value: value,
+					writable: false,
+					enumerable: false
+				});
+			},
+			addProp = function(obj,prop,value,fullname) {
+				(function() {
+					var pname=(_.contains(["S","F","I","D"],prop) ? "_"+prop : prop),
+						full_pname = fullname || prop,
+						pvalue=value;
+					_.each(["S","I","F"], function(p) {
+						if ( !_.has(obj,p)) {
+							Object.defineProperty(obj, p, {
+								value: {},
+								enumerable: false,
+								readonly: true
+							});
+						}
+					});
+					if ( !_.has(obj,"D")) {
+						Object.defineProperty(obj, "D", {
+							value: _.reduce(_.range(10), function(m,d) {
+									Object.defineProperty(m, d, {
+										value: {},
+										enumerable: true,
+										readonly: true
+									});
+									return m;
+								}, {}),
+							enumerable: false,
+							readonly: true
+						});
+					}
+					// raw value
+					Object.defineProperty(obj, pname, {
+						enumerable: true,
+						set: function(v) {
+							if (v!==pvalue) {
+								pvalue=v;
+								prepareUpdate(full_pname,v);
+							}
+						},
+						get: function() {
+							return pvalue;
+						}
+					});
+					// string value
+					Object.defineProperty(obj.S, pname, {
+						enumerable: true,
+						set: function(v) {
+							var val=v.toString();
+							if (val !== pvalue) {
+								pvalue=val;
+								prepareUpdate(full_pname,val);
+							}
+						},
+						get: function() {
+							return pvalue.toString();
+						}
+					});
+					// int value
+					Object.defineProperty(obj.I, pname, {
+						enumerable: true,
+						set: function(v) {
+							var val=parseInt(v,10) || 0;
+							if (val !== pvalue) {
+								pvalue=val;
+								prepareUpdate(full_pname,val);
+							}
+						},
+						get: function() {
+							return parseInt(pvalue,10) || 0;
+						}
+					});
+					// float value
+					Object.defineProperty(obj.F, pname, {
+						enumerable: true,
+						set: function(v) {
+							var val=parseFloat(v) || 0;
+							if (val !== pvalue) {
+								pvalue=val;
+								prepareUpdate(full_pname,val);
+							}
+						},
+						get: function() {
+							return parseFloat(pvalue) || 0;
+						}
+					});
+					_.each(_.range(10), function(d) {
+						Object.defineProperty(obj.D[d], pname, {
+							enumerable: true,
+							set: function(v) {
+								var val=(parseFloat(v) || 0).toFixed(d);
+								if (val !== pvalue) {
+									pvalue=val;
+									prepareUpdate(full_pname,val);
+								}
+							},
+							get: function() {
+								return (parseFloat(pvalue) || 0).toFixed(d);
+							}
+						});
+					});
+				}());
+			},
+			repeating = function( section ) {
+				return (function(s) {
+					var sectionName = s,
+						attrNames = [],
+						fieldNames = [],
+						operations = [],
+						after = [],
+					repAttrs = function TAS_Repeating_Attrs() {
+						attrNames = namesFromArgs(arguments,attrNames);
+						return this;
+					},
+					repFields = function TAS_Repeating_Fields() {
+						fieldNames = namesFromArgs(arguments,fieldNames);
+						return this;
+					},
+					repReduce = function TAS_Repeating_Reduce(func, initial, final, context) {
+						operations.push({
+							type: "reduce",
+							func: (func && _.isFunction(func) && func) || _.noop,
+							memo: (_.isUndefined(initial) && 0) || initial,
+							final: (final && _.isFunction(final) && final) || _.noop,
+							context: context || {}
+						});
+						return this;
+					},
+					repMap = function TAS_Repeating_Map(func, final, context) {
+						operations.push({
+							type: "map",
+							func: (func && _.isFunction(func) && func) || _.noop,
+							final: (final && _.isFunction(final) && final) || _.noop,
+							context: context || {}
+						});
+						return this;
+					},
+					repEach = function TAS_Repeating_Each(func, final, context) {
+						operations.push({
+							type: "each",
+							func: (func && _.isFunction(func) && func) || _.noop,
+							final: (final && _.isFunction(final) && final) || _.noop,
+							context: context || {}
+						});
+						return this;
+					},
+					repTap = function TAS_Repeating_Tap(final, context) {
+						operations.push({
+							type: "tap",
+							final: (final && _.isFunction(final) && final) || _.noop,
+							context: context || {}
+						});
+						return this;
+					},
+					repAfter = function TAS_Repeating_After(callback,context) {
+						after.push({
+							callback: (callback && _.isFunction(callback) && callback) || _.noop,
+							context: context || {}
+						});
+						return this;
+					},
+					repExecute = function TAS_Repeating_Execute(callback,context) {
+						var rowSet = {},
+							attrSet = {},
+							fieldIds = [],
+							fullFieldNames = [];
+						repAfter(callback,context);
+						// call each operation per row.
+						// call each operation"s final
+						getSectionIDs("repeating_"+sectionName, function(ids) {
+							fieldIds = ids;
+							fullFieldNames = _.reduce(fieldIds, function(memo,id) {
+								return memo.concat(_.map(fieldNames, function(name) {
+									return "repeating_"+sectionName+"_"+id+"_"+name;
+								}));
+							},[]);
+							getAttrs( _.uniq(attrNames.concat(fullFieldNames)), function(values) {
+								_.each(attrNames, function(aname) {
+									if (values.hasOwnProperty(aname)) {
+										addProp(attrSet,aname,values[aname]);
+									}
+								});
+								rowSet = _.reduce(fieldIds, function(memo,id) {
+									var r={};
+									addId(r,id);
+									_.each(fieldNames, function(name) {
+										var fn = "repeating_"+sectionName+"_"+id+"_"+name;
+										addProp(r,name,values[fn],fn);
+									});
+									memo[id]=r;
+									return memo;
+								}, {});
+								_.each(operations, function(op) {
+									var res;
+									switch(op.type) {
+										case "tap":
+											_.bind(op.final,op.context,rowSet,attrSet)();
+											break;
+										case "each":
+											_.each(rowSet, function(r) {
+												_.bind(op.func,op.context,r,attrSet,r.id,rowSet)();
+											});
+											_.bind(op.final,op.context,rowSet,attrSet)();
+											break;
+										case "map":
+											res = _.map(rowSet, function(r) {
+												return _.bind(op.func,op.context,r,attrSet,r.id,rowSet)();
+											});
+											_.bind(op.final,op.context,res,rowSet,attrSet)();
+											break;
+										case "reduce":
+											res = op.memo;
+											_.each(rowSet, function(r) {
+												res = _.bind(op.func,op.context,res,r,attrSet,r.id,rowSet)();
+											});
+											_.bind(op.final,op.context,res,rowSet,attrSet)();
+											break;
+									}
+								});
+								// finalize attrs
+								applyQueuedUpdates();
+								_.each(after, function(op) {
+									_.bind(op.callback,op.context)();
+								});
+							});
+						});
+					};
+					return {
+						attrs: repAttrs,
+						attr: repAttrs,
+						column: repFields,
+						columns: repFields,
+						field: repFields,
+						fields: repFields,
+						reduce: repReduce,
+						inject: repReduce,
+						foldl: repReduce,
+						map: repMap,
+						collect: repMap,
+						each: repEach,
+						forEach: repEach,
+						tap: repTap,
+						"do": repTap,
+						after: repAfter,
+						last: repAfter,
+						done: repAfter,
+						execute: repExecute,
+						go: repExecute,
+						run: repExecute
+					};
+				}(section));
+			},
+			repeatingSimpleSum = function(section, field, destination) {
+				repeating(section)
+					.attr(destination)
+					.field(field)
+					.reduce(function(m,r) {
+						return m + (r.F[field]);
+					},0, function(t,r,a) {
+						a.S[destination]=t;
+					})
+					.execute();
+			};
+		return {
+			/* Repeating Sections */
+			repeatingSimpleSum: repeatingSimpleSum,
+			repeating: repeating
+		};
+	}());
+
+	/* ======================================================================== */
+	/* ------------------------------------------------------------------------ */
+	/* -------------------------------- Module -------------------------------- */
+	/* ------------------------------------------------------------------------ */
+	/* ======================================================================== */
+
+	const wfrp4 = (function() {
+
+		////////////////////////////////////////////////////////////////////////////
+		// * Variables
+		////////////////////////////////////////////////////////////////////////////
+
+		const Glob = { // Global
+			"name" : "Warhammer Fantasy Roleplay 4th Edition",
+			"type" : "Character Sheet",
+			"version" : 1.8
+		};
+
+		////////////////////////////////////////////////////////////////////////////
+		// * Toggles
+		////////////////////////////////////////////////////////////////////////////
+
+		const setModifierValue = function() {
+			getAttrs(["AskModifier"], function(v) {
+				let s = v["AskModifier"] == "0" ? "0" : "?{" + getTranslationByKey("Modifier") + "?|0}";
+				setAttrs({modifier: s});
+			});
+		};
+
+		////////////////////////////////////////////////////////////////////////////
+		// * Version
+		////////////////////////////////////////////////////////////////////////////
+
+		const checkVersion = function() {
+			getAttrs(["version", "char_rank"], function(v) {
+				if (typeof v["version"] !== "number") {
+					console.info(Glob.name + " " + Glob.type + " Is Now Being Initialized..."); // DEBUG
+					setAttrs({"version" : 0.0}, {silent: true});
+					checkVersion();
+				} else if (parseFloat(v["version"]) < Glob.version) {
+					console.info(Glob.name + " " + Glob.type + " Is Now Updated to v." + Glob.version); // DEBUG
+					setAttrs({"version" : Glob.version}, {silent: true});
+				} else {
+					console.info(Glob.name + " " + Glob.type + " v." + Glob.version + " Loaded!"); // DEBUG
+				}
+			});
+		};
+
+		////////////////////////////////////////////////////////////////////////////
+		// * Output
+		////////////////////////////////////////////////////////////////////////////
+
+		return {
+			setModifierValue:setModifierValue,
+			checkVersion: checkVersion
+		};
+
+	})();
+
+	/* ======================================================================== */
+	/* ------------------------------------------------------------------------ */
+	/* -------------------------------- Events -------------------------------- */
+	/* ------------------------------------------------------------------------ */
+	/* ======================================================================== */
+
+	// Calculate Armor Points
+	on("change:repeating_armor remove:repeating_armor", function() {
+		TAS.repeating("armor")
+			.attrs("ArmourAPHead","ArmourAPRightArm","ArmourAPLeftArm","ArmourAPBody","ArmourAPRightLeg","ArmourAPLeftLeg","ArmourAPShield")
+			.fields("ArmourHead","ArmourRArm","ArmourLArm","ArmourBody","ArmourRLeg","ArmourLLeg","ArmourShield","ArmourPoints")
+			.reduce(function(m,r) {
+				m.totalheadAP += (r.I.ArmourHead*r.I.ArmourPoints);
+				m.totalRArmAP += (r.I.ArmourRArm*r.I.ArmourPoints);
+				m.totalLArmAP += (r.I.ArmourLArm*r.I.ArmourPoints);
+				m.totalBodyAP += (r.I.ArmourBody*r.I.ArmourPoints);
+				m.totalRLegAP += (r.I.ArmourRLeg*r.I.ArmourPoints);
+				m.totalLLegAP += (r.I.ArmourLLeg*r.I.ArmourPoints);
+				m.totalShieldAP += (r.I.ArmourShield*r.I.ArmourPoints);
+				return m;
+			}, {totalheadAP:0,totalRArmAP:0,totalLArmAP:0,totalBodyAP:0,totalRLegAP:0,totalLLegAP:0,totalShieldAP:0}, function(m,r,a) {
+				a.I.ArmourAPHead = m.totalheadAP;
+				a.I.ArmourAPRightArm = m.totalRArmAP;
+				a.I.ArmourAPLeftArm = m.totalLArmAP;
+				a.I.ArmourAPBody = m.totalBodyAP;
+				a.I.ArmourAPRightLeg = m.totalRLegAP;
+				a.I.ArmourAPLeftLeg = m.totalLLegAP;
+				a.I.ArmourAPShield = m.totalShieldAP;
+			})
+			.execute();
+			TAS.repeatingSimpleSum("armor","ArmourEnc","character_EncumbranceArmour");
+	});
+
+	// Update Weapons Encumbrance
+	on("change:repeating_weapons remove:repeating_weapons", function() {
+		TAS.repeating("weapons")
+			.attrs("character_EncumbranceWeapons")
+			.fields("WeaponHeld","WeaponEnc")
+			.reduce(function(m,r) {
+				m.totalheld += (r.I.WeaponHeld*r.I.WeaponEnc);
+				return m;
+			}, {totalheld:0}, function(m,r,a) {
+				a.I.character_EncumbranceWeapons = m.totalheld;
+			})
+			.execute();
+	});
+
+	// Update Trappings Encumbrance
+	on("change:repeating_trappings remove:repeating_trappings", function() {
+		TAS.repeating("trappings")
+			.attrs("character_EncumbranceTrappings")
+			.fields("TrappingHeld","TrappingWeight")
+			.reduce(function(m,r) {
+				m.totalheld += (r.I.TrappingHeld*r.I.TrappingWeight);
+				return m;
+			}, {totalheld:0}, function(m,r,a) {
+				a.I.character_EncumbranceTrappings = m.totalheld;
+			})
+			.execute();
+	});
+
+	// Update Experience Advancements
+	on("change:repeating_advancements", function() {
+		TAS.repeating("advancements") // set the repeating group we are using
+			.attrs("character_SpentExperience") // specify we want access to the total_weight attribute
+			.fields("advancement1xp", "advancement2xp", "advancement3xp") // specify we want the item and weight repeating fields
+			.reduce(function(memo,row,attrSet,id,rowSet) {
+				memo.total += row.I.advancement1xp;
+				memo.total += row.I.advancement2xp;
+				memo.total += row.I.advancement3xp;
+				return memo;
+			}, {total: 0}, function(memo,rowSet,attrSet) {
+				attrSet.I.character_SpentExperience = memo.total;
+			})
+			.execute();
+	});
+
+	// Convert Wealth
+	on("clicked:gold_to_silver clicked:silver_to_gold clicked:silver_to_brass clicked:brass_to_silver", function(e) {
+		getAttrs(["character_Gold", "character_Silver", "character_Brass"], function(v) {
+			let gold = parseFloat(v["character_Gold"]) || 0;
+			let silver = parseFloat(v["character_Silver"]) || 0;
+			let brass = parseFloat(v["character_Brass"]) || 0;
+			let u = {};
+			switch(e.triggerName) {
+				case "clicked:gold_to_silver": // 1 = 20
+					if (gold >= 1) {
+						u["character_Gold"] = gold - 1;
+						u["character_Silver"] = silver + 20;
+					}
+				break;
+				case "clicked:silver_to_gold": // 20 = 1
+					if (silver >= 20) {
+						u["character_Silver"] = silver - 20;
+						u["character_Gold"] = gold + 1;
+					}
+				break;
+				case "clicked:silver_to_brass": // 1 = 12
+					if (silver >= 1) {
+						u["character_Silver"] = silver - 1;
+						u["character_Brass"] = brass + 12;
+					}
+				break;
+				case "clicked:brass_to_silver": // 12 = 1
+					if (brass >= 12) {
+						u["character_Brass"] = brass - 12;
+						u["character_Silver"] = silver + 1;
+					}
+				break;
+			}
+			setAttrs(u);
+		});
+	});
+
+	// Ask Modifier
+	on("change:AskModifier", function() {
+		wfrp4.setModifierValue();
+	});
+
+	// Whisper to GM
+	on("change:WhisperToGM", function(e) {
+		setAttrs({whisper: (e.newValue == "0" ? "" : "/w gm ")});
+	});
+
+	// Open Sheet
+	on("sheet:opened", function() {
+		wfrp4.setModifierValue();
+		wfrp4.checkVersion();
+	});
+
+	// Heal HP
+	on("clicked:heal_hp", function() {
+		getAttrs(
+			[
+				"hp_bar",
+				"hp_bar_max",
+				"Initial_HP_Max",
+				"Talent_HP_Max",
+				"Advances_HP_Max",
+				"Modifier_HP_Max"
+			], function(v) {
+
+			let present_hp = parseFloat(v["hp_bar"]);
+			let max_hp = parseFloat(v["hp_bar_max"]);
+			let u = {};
+
+			if (present_hp < max_hp) {
+				present_hp = present_hp + 1;
+			} else {
+				present_hp = max_hp;
+			}
+			u["hp_bar"] = present_hp;
+			setAttrs(u);
+		});
+	});
+
+	// Lose HP
+	on("clicked:lose_hp", function() {
+		getAttrs(["hp_bar", "hp_bar_max"], function(v) {
+			let present_hp = parseFloat(v["hp_bar"]);
+			let max_hp = parseFloat(v["hp_bar_max"]);
+			let u = {};
+
+			if (present_hp <= max_hp) {
+				present_hp = present_hp - 1;
+			} else {
+				present_hp = max_hp;
+			}
+			u["hp_bar"] = present_hp;
+			setAttrs(u);
+		});
+	});
+
+	// Gain Fate
+	on("clicked:earn_fate", function() {
+		getAttrs(["hidden_remaining_fate"], function(v) {
+			let present_fate = parseFloat(v["hidden_remaining_fate"]);
+			let u = {};
+			u["hidden_remaining_fate"] = present_fate + 1;
+			setAttrs(u);
+		});
+	});
+
+	// Use Fate
+	on("clicked:use_fate", function() {
+		getAttrs(["hidden_remaining_fate"], function(v) {
+			let present_fate = parseFloat(v["hidden_remaining_fate"]);
+			let u = {};
+			u["hidden_remaining_fate"] = present_fate - 1;
+			setAttrs(u);
+		});
+	});
+
+	// Add Insanity
+	on("clicked:add_insanity", function() {
+		getAttrs(["hidden_insanity"], function(v) {
+			let present_insanity = parseFloat(v["hidden_insanity"]);
+			let u = {};
+			u["hidden_insanity"] = present_insanity + 1;
+			setAttrs(u);
+		});
+	});
+
+	// Cure Insanity
+	on("clicked:remove_insanity", function() {
+		getAttrs(["hidden_insanity"], function(v) {
+			let present_insanity = parseFloat(v["hidden_insanity"]);
+			let u = {};
+			u["hidden_insanity"] = present_insanity - 1;
+			setAttrs(u);
+		});
+	});
+
+	// Open Sheet
+	on("sheet:opened", function() {
+		getAttrs([
+		"Initial_HP_Max",
+		"Talent_HP_Max",
+		"Advances_HP_Max",
+		"Modifier_HP_Max"
+		], function(v) {
+			let max_hp = Math.floor(
+				parseFloat(v.Initial_HP_Max) + parseFloat(v.Talent_HP_Max) + parseFloat(v.Advances_HP_Max) + parseFloat(v.Modifier_HP_Max)
+			)
+			let u = {};
+			u["hp_bar_max"] = max_hp
+			setAttrs(u)
+		});
+	});
+</script>
