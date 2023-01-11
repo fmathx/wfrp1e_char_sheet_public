@@ -1,6 +1,19 @@
+<!-- WARHAMMER FANTASY ROLEPLAY 1st EDITION CHARACTER SHEET (ADAPTED, SEE BELOW) -->
+
+<!-- INITIAL WORK: -->
 <!-- WARHAMMER FANTASY ROLEPLAY 4th EDITION CHARACTER SHEET -->
 <!-- Authors: Arioch1973, Alondaar, Havoc, Oxycutor, Realitor, Medieve, Zedafty -->
 <!-- Version 1.8 -->
+
+<!-- NOTE ON AUTHORSHIP:
+I this is not an original sheet.
+I took the sheet developed for the WFRP 4th edition by the authors cited above and adapted it to meet
+the needs of the 1st edition.
+I did not develop the graphics or the overall structure of the sheet. I merely hacked away some parts
+that were not relevant to the 1st edition (or to our group) and added the bits that were missing.
+I am in no way monetizing this.
+
+Mathieu L. -->
 
 <!-- CHARACTER SHEET -->
 <div>
@@ -2283,9 +2296,9 @@
 		////////////////////////////////////////////////////////////////////////////
 
 		const Glob = { // Global
-			"name" : "Warhammer Fantasy Roleplay 4th Edition",
+			"name" : "Warhammer Fantasy Roleplay 1st Edition",
 			"type" : "Character Sheet",
-			"version" : 1.8
+			"version" : 1.0
 		};
 
 		////////////////////////////////////////////////////////////////////////////
@@ -2464,11 +2477,7 @@
 		getAttrs(
 			[
 				"hp_bar",
-				"hp_bar_max",
-				"Initial_HP_Max",
-				"Talent_HP_Max",
-				"Advances_HP_Max",
-				"Modifier_HP_Max"
+				"hp_bar_max"
 			], function(v) {
 
 			let present_hp = parseFloat(v["hp_bar"]);

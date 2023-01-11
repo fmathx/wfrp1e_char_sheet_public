@@ -1,0 +1,20 @@
+Version 1.0 Jan 11th 2023
+
+Removed Ag from the CHARACTERISTICS table
+Added M, Ld and Cl to the CHARACTERISTICS table
+Renamed the HP attributes in the CHARACTERISTICS table to HP_Max
+Upated Roll buttons macros for S and T (values + modifiers are multiplied by 10 so that the D100 roll makes sense)
+Removed Roll buttons for stats that have no tests associated to them (A, HP, M)
+Removed the right-hand section displaying fate points / corruption / resilience /experience points
+Removed the Movement table because we never used it.
+Added left-hand table containing Health, Fate and Insanity points and the option to add mental illnesses.
+Condensed all stuff in the main tab pertaining to the init tracker, encumbrance and wealth into a single table.
+Init tracker roll button now returns the Current_I value instead of rolling a number.
+HP are tracked by hidden variables named hp_bar and hp_bar_max so they can be used to feed a token health bar.
+Removed all the Weapons-related skills tables from the Skills & Talents tab.
+Updated all Stats selection dropdown menus to contain the new stats and removed Ag.
+Updated the displayed hit location dice ranges on the Gear & Magic body diagram to match the distribution from the 1st edition.
+Updated the Hit Location dice rolls accordingly.
+Added Hit Location to WS and BS rolls.
+Added simple sheet workers to handle +/- buttons for HP, Fate and Insanity points.
+Added sheet worker that triggers on opening to update hp_bar_max value.
