@@ -1,4 +1,6 @@
 <!-- WARHAMMER FANTASY ROLEPLAY 1st EDITION CHARACTER SHEET (ADAPTED, SEE BELOW) -->
+<!-- Authors: Arioch1973, Alondaar, Havoc, Oxycutor, Realitor, Medieve, Zedafty -->
+<!-- Version 1.8 -->
 
 <!-- INITIAL WORK: -->
 <!-- WARHAMMER FANTASY ROLEPLAY 4th EDITION CHARACTER SHEET -->
@@ -96,8 +98,8 @@ Mathieu L. -->
 						<tr>
 							<th style="width: 10%;"></th>
 							<th style="width: 6%;"><label class="sheet-table-header" data-i18n="M">M</label></th>
-							<th style="width: 6%;"><button type="roll" name="roll_WS" value="@{template} {{title=^{Weapon-Skill}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_WS}]]}} {{modifier=[[@{modifier}]]}} {{hitlocation=1}} ]]" class="sheet-has-title" data-i18n-title="Weapon-Skill"><span data-i18n="WS">WS</span></button></th>
-							<th style="width: 6%;"><button type="roll" name="roll_BS" value="@{template} {{title=^{Ballistic-Skill}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_BS}]]}} {{modifier=[[@{modifier}]]}} {{hitlocation=1}} ]]" class="sheet-has-title" data-i18n-title="Ballistic-Skill"><span data-i18n="BS">BS</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_WS" value="@{template} {{title=^{Weapon-Skill}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_WS}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Weapon-Skill"><span data-i18n="WS">WS</span></button></th>
+							<th style="width: 6%;"><button type="roll" name="roll_BS" value="@{template} {{title=^{Ballistic-Skill}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_BS}]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Ballistic-Skill"><span data-i18n="BS">BS</span></button></th>
 							<th style="width: 6%;"><button type="roll" name="roll_S" value="@{template} {{title=^{Strength}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[(@{modifier}+@{Current_S}) * 10]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Strength"><span data-i18n="S">S</span></button></th>
 							<th style="width: 6%;"><button type="roll" name="roll_T" value="@{template} {{title=^{Toughness}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[(@{modifier}+@{Current_T}) * 10]]}} {{modifier=[[@{modifier}]]}}" class="sheet-has-title" data-i18n-title="Toughness"><span data-i18n="T">T</span></button></th>
 							<th style="width: 6%;"><label class="sheet-table-header" data-i18n="HP">HP</label></th>
@@ -310,18 +312,12 @@ Mathieu L. -->
 						<div class="sheet-table-wrapper">
 							<table>
 								<tr>
-									<th colspan="5" class="sheet-table-header"><h4 data-i18n="INITIATIVE TRACKER">INITIATIVE TRACKER</h4></th>
+									<th colspan="3" class="sheet-table-header"><h4 data-i18n="COMBAT">COMBAT</h4></th>
 								</tr>
 								<tr>
-									<td style="width: 10%">
-									<td style="width: 50%">
-										<select name="attr_combat_iniative_template">
-											<option value="@{template} {{title=^{Combat Initiative}}} {{initiativeTest=[[@{character_combatiniative_modifier} + @{Current_I} &{tracker}]]}} {{heroInitiative=[[@{Current_I}]]}} {{initiativeTestTalents=[[@{character_combatiniative_modifier}]]}} {{modifier=[[@{modifier}]]}}" data-i18n="I">I</option>
-										</select>
-									</td>
-									<td style="width: 10%"><input type="number" name="attr_character_combatiniative_modifier" value="0" /></td>
-									<td style="width: 20%"><button type="roll" name="roll_combatiniativetemplate" value="@{combat_iniative_template}"><span data-i18n="Roll">Roll</span></button></td>
-									<td style="width: 10%"></td>
+									<td style="width: 33%"><button type="roll" class="tokenaction" name="roll_Melee" value="@{template} {{title=^{Melee Attack}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_WS}]]}} {{modifier=[[@{modifier}]]}} {{hitlocation=1}} ]]"><span data-i18n="Melee Attack">Melee Attack</span></button></td>
+									<td style="width: 33%"><button type="roll" class="tokenaction" name="roll_Ranged" value="@{template} {{title=^{Ranged Attack}}} {{dice=[[1d100cs01cs02cs03cs04cs05cs11cs22cs33cs44cs55cs66cs77cs88cf96cf97cf98cf99cf100]]}} {{against=[[@{modifier}+@{Current_BS}]]}} {{modifier=[[@{modifier}]]}} {{hitlocation=1}} ]]"><span data-i18n="Ranged Attack">Ranged Attack</span></button></td>
+									<td style="width: 33%"><button type="roll" class="tokenaction" name="roll_init-tracker" value="@{template} {{title=^{Combat Initiative}}} {{initiativeTest=[[@{modifier} + @{Current_I} &{tracker}]]}} {{heroInitiative=[[@{Current_I}]]}} {{modifier=[[@{modifier}]]}}"><span data-i18n="Initiative Tracker">Initiative Tracker</span></button></td>
 								</tr>
 								<tr>
 									<td colspan="5"> </td>
